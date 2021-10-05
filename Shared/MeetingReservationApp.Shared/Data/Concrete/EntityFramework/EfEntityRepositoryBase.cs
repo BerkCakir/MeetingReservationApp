@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MeetingReservationApp.Shared.Data.Concrete
+namespace MeetingReservationApp.Shared.Data.Concrete.EntityFramework
 {
     public class EfEntityRepositoryBase<TEntity> : IEntityRepository<TEntity>
            where TEntity : class, IEntity, new()
