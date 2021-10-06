@@ -25,7 +25,9 @@ namespace MeetingReservationApp.RoomReservationApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers(); 
+            
+            services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
