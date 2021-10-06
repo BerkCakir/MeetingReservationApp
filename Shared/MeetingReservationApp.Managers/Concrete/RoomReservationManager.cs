@@ -31,7 +31,7 @@ namespace MeetingReservationApp.Managers.Concrete
             #endregion
 
             List<Room> availableRooms = new List<Room>();
-            var offices = await _unitOfWork.Rooms.GetAllAsync(c => c.LocationId == locationId);
+            var offices = await _unitOfWork.Rooms.GetAllAsync(x => x.LocationId == locationId);
             if (offices != null)
             {
                 foreach (var office in offices)
@@ -84,6 +84,31 @@ namespace MeetingReservationApp.Managers.Concrete
             await _unitOfWork.RoomReservations.AddAsync(newReservation);
             #endregion
 
+            #region Add Reservation For Inventory Related To The Room
+            var roomInventories = await _unitOfWork.Inventories.GetAllAsync(x => x.RoomId == newReservation.RoomId);
+            foreach (var inventory in roomInventories)
+            {
+                if (inventory.IsFixed)
+                {   // if inventory is fixed, no other reservations could be created on it - directly add it to current reservation
+                    await _unitOfWork.InventoryReservations.AddAsync(new InventoryReservation { RoomReservationGuid = newReservation.RoomReservationGuid, InventoryId = inventory.Id });
+                }
+                else
+                {
+                    var inventoryReservations = await _unitOfWork.InventoryReservations.GetAllAsync(x => x.InventoryId == inventory.Id &&
+                                                                                                   ((newReservation.MeetingStartTime >= x.RoomReservation.MeetingStartTime && newReservation.MeetingStartTime <= x.RoomReservation.MeetingEndTime) ||
+                                                                                                   (newReservation.MeetingEndTime >= x.RoomReservation.MeetingStartTime && newReservation.MeetingEndTime <= x.RoomReservation.MeetingEndTime) ||
+                                                                                                   (newReservation.MeetingStartTime.Date == x.RoomReservation.MeetingStartTime.Date &&
+                                                                                                   newReservation.MeetingStartTime <= x.RoomReservation.MeetingStartTime && newReservation.MeetingEndTime >= x.RoomReservation.MeetingEndTime)),
+                                                                                                    x => x.RoomReservation);
+                    if(inventoryReservations.Count <= 0)
+                    { // if room's inventory is not fixed, but have no other reservations - directly add it to current reservation
+                        await _unitOfWork.InventoryReservations.AddAsync(new InventoryReservation { RoomReservationGuid = newReservation.RoomReservationGuid, InventoryId = inventory.Id });
+                    }
+                }
+
+            }
+            #endregion
+
             await _unitOfWork.SaveAsync(); // sava all both reservations and related inventories
             return new Result(ResultStatus.Success, "Reservation added successfully");
         }
@@ -108,11 +133,11 @@ namespace MeetingReservationApp.Managers.Concrete
         }
         private async Task<IResult> CheckHoursForOffice(DateTime newStartTime, DateTime newEndTime, int roomId)
         {
-            var exists = await _unitOfWork.RoomReservations.AnyAsync(c => c.RoomId == roomId &&
-                                                                      ((newStartTime >= c.MeetingStartTime && newStartTime <= c.MeetingEndTime) ||
-                                                                       (newEndTime >= c.MeetingStartTime && newEndTime <= c.MeetingEndTime) ||
-                                                                       (newStartTime.Date == c.MeetingStartTime.Date &&
-                                                                       newStartTime <= c.MeetingStartTime && newEndTime >= c.MeetingEndTime)));
+            var exists = await _unitOfWork.RoomReservations.AnyAsync(x => x.RoomId == roomId &&
+                                                                      ((newStartTime >= x.MeetingStartTime && newStartTime <= x.MeetingEndTime) ||
+                                                                       (newEndTime >= x.MeetingStartTime && newEndTime <= x.MeetingEndTime) ||
+                                                                       (newStartTime.Date == x.MeetingStartTime.Date &&
+                                                                       newStartTime <= x.MeetingStartTime && newEndTime >= x.MeetingEndTime)));
 
             if (exists)
             {
@@ -123,7 +148,7 @@ namespace MeetingReservationApp.Managers.Concrete
         }
         private async Task<IResult> CheckAttendantCapacity(int roomId, int attendantCount)
         {
-            var office = await _unitOfWork.Rooms.GetAsync(c => c.Id == roomId);
+            var office = await _unitOfWork.Rooms.GetAsync(x => x.Id == roomId);
             
             if(office.AttendanceCapacity < attendantCount)
             {
