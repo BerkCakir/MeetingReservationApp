@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeetingReservationApp.Data.Migrations
 {
     [DbContext(typeof(MeetingReservationAppContext))]
-    [Migration("20211006202700_InitialMigration")]
+    [Migration("20211006211257_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,80 +58,80 @@ namespace MeetingReservationApp.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5684),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7831),
                             InventoryPurpose = 2,
                             IsFixed = true,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5696),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7845),
                             Name = "Beamer",
                             RoomId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5705),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7855),
                             InventoryPurpose = 1,
                             IsFixed = true,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5706),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7856),
                             Name = "WhiteBoard",
                             RoomId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5710),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7859),
                             InventoryPurpose = 2,
                             IsFixed = false,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5711),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7860),
                             Name = "Television",
                             RoomId = 3
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5714),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7863),
                             InventoryPurpose = 1,
                             IsFixed = true,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5716),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7864),
                             Name = "WhiteBoard",
                             RoomId = 3
                         },
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5719),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7868),
                             InventoryPurpose = 3,
                             IsFixed = true,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5720),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7869),
                             Name = "Video Conference Equipment",
                             RoomId = 4
                         },
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5724),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7872),
                             InventoryPurpose = 2,
                             IsFixed = false,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5725),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7873),
                             Name = "Television",
                             RoomId = 5
                         },
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5728),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7876),
                             InventoryPurpose = 3,
                             IsFixed = true,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5730),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7877),
                             Name = "Television",
                             RoomId = 5
                         },
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5733),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7880),
                             InventoryPurpose = 2,
                             IsFixed = true,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5734),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7881),
                             Name = "Beamer",
                             RoomId = 6
                         });
@@ -166,9 +166,9 @@ namespace MeetingReservationApp.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 88, DateTimeKind.Local).AddTicks(4217),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 576, DateTimeKind.Local).AddTicks(9454),
                             InventoryId = 2,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 88, DateTimeKind.Local).AddTicks(4230),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 576, DateTimeKind.Local).AddTicks(9467),
                             RoomReservationGuid = new Guid("019ee26d-5111-4d96-abfa-5bd6c966d529")
                         });
                 });
@@ -211,8 +211,8 @@ namespace MeetingReservationApp.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 73, DateTimeKind.Local).AddTicks(1168),
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 73, DateTimeKind.Local).AddTicks(1460),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 563, DateTimeKind.Local).AddTicks(2926),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 563, DateTimeKind.Local).AddTicks(3186),
                             Name = "Amsterdam",
                             OfficeEndHours = 17,
                             OfficeEndMinutes = 0,
@@ -222,8 +222,8 @@ namespace MeetingReservationApp.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 73, DateTimeKind.Local).AddTicks(1741),
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 73, DateTimeKind.Local).AddTicks(1743),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 563, DateTimeKind.Local).AddTicks(3436),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 563, DateTimeKind.Local).AddTicks(3438),
                             Name = "Berlin",
                             OfficeEndHours = 20,
                             OfficeEndMinutes = 0,
@@ -239,11 +239,14 @@ namespace MeetingReservationApp.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ChairCount")
+                    b.Property<int>("AttendanceCapacity")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("HasChairs")
+                        .HasColumnType("bit");
 
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
@@ -266,55 +269,61 @@ namespace MeetingReservationApp.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ChairCount = 10,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1011),
+                            AttendanceCapacity = 10,
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(6987),
+                            HasChairs = true,
                             LocationId = 1,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1025),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7001),
                             Name = "Meeting Room 1"
                         },
                         new
                         {
                             Id = 2,
-                            ChairCount = 0,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1033),
+                            AttendanceCapacity = 12,
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7009),
+                            HasChairs = true,
                             LocationId = 1,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1034),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7011),
                             Name = "Meeting Room 2"
                         },
                         new
                         {
                             Id = 3,
-                            ChairCount = 5,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1038),
+                            AttendanceCapacity = 5,
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7014),
+                            HasChairs = false,
                             LocationId = 1,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1039),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7015),
                             Name = "Meeting Room 3"
                         },
                         new
                         {
                             Id = 4,
-                            ChairCount = 20,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1043),
+                            AttendanceCapacity = 20,
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7018),
+                            HasChairs = true,
                             LocationId = 2,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1044),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7019),
                             Name = "Meeting Room A"
                         },
                         new
                         {
                             Id = 5,
-                            ChairCount = 5,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1048),
+                            AttendanceCapacity = 5,
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7023),
+                            HasChairs = false,
                             LocationId = 2,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1049),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7024),
                             Name = "Meeting Room B"
                         },
                         new
                         {
                             Id = 6,
-                            ChairCount = 0,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1052),
+                            AttendanceCapacity = 25,
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7027),
+                            HasChairs = true,
                             LocationId = 2,
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1053),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7028),
                             Name = "Meeting Room C"
                         });
                 });
@@ -361,11 +370,11 @@ namespace MeetingReservationApp.Data.Migrations
                         {
                             Id = 1,
                             AttendantCount = 7,
-                            CreatedDate = new DateTime(2021, 10, 6, 23, 27, 0, 82, DateTimeKind.Local).AddTicks(2973),
+                            CreatedDate = new DateTime(2021, 10, 7, 0, 12, 56, 571, DateTimeKind.Local).AddTicks(2147),
                             Description = "Marketing Unit Meeting",
                             MeetingEndTime = new DateTime(2021, 10, 2, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             MeetingStartTime = new DateTime(2021, 10, 2, 11, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModifiedDate = new DateTime(2021, 10, 6, 23, 27, 0, 82, DateTimeKind.Local).AddTicks(2988),
+                            ModifiedDate = new DateTime(2021, 10, 7, 0, 12, 56, 571, DateTimeKind.Local).AddTicks(2160),
                             RoomId = 2,
                             RoomReservationGuid = new Guid("019ee26d-5111-4d96-abfa-5bd6c966d529")
                         });

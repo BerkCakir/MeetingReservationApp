@@ -18,7 +18,7 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
             builder.Property(a => a.Name).HasMaxLength(100);
             builder.Property(a => a.Name).IsRequired();
             builder.Property(a => a.LocationId).IsRequired();
-            builder.Property(a => a.ChairCount).IsRequired();
+            builder.Property(a => a.AttendanceCapacity).IsRequired();
 
             builder.HasOne<Location>(a => a.Location).WithMany(c => c.Rooms).HasForeignKey(a => a.LocationId);
 
@@ -30,7 +30,8 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
                  Id = 1,
                  LocationId = 1,
                  Name = "Meeting Room 1",
-                 ChairCount = 10,
+                 AttendanceCapacity = 10,
+                 HasChairs = true,
                  CreatedDate = DateTime.Now,
                  ModifiedDate = DateTime.Now
              },
@@ -39,7 +40,8 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
                  Id = 2,
                  LocationId = 1,
                  Name = "Meeting Room 2",
-                 ChairCount = 0,
+                 AttendanceCapacity = 12,
+                 HasChairs = true,
                  CreatedDate = DateTime.Now,
                  ModifiedDate = DateTime.Now
              },
@@ -48,7 +50,8 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
                  Id = 3,
                  LocationId = 1,
                  Name = "Meeting Room 3",
-                 ChairCount = 5,
+                 AttendanceCapacity = 5,
+                 HasChairs = false,
                  CreatedDate = DateTime.Now,
                  ModifiedDate = DateTime.Now
              },
@@ -57,7 +60,8 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
                  Id = 4,
                  LocationId = 2,
                  Name = "Meeting Room A",
-                 ChairCount = 20,
+                 AttendanceCapacity = 20,
+                 HasChairs = true,
                  CreatedDate = DateTime.Now,
                  ModifiedDate = DateTime.Now
              },
@@ -66,7 +70,8 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
                  Id = 5,
                  LocationId = 2,
                  Name = "Meeting Room B",
-                 ChairCount = 5,
+                 AttendanceCapacity = 5,
+                 HasChairs = false,
                  CreatedDate = DateTime.Now,
                  ModifiedDate = DateTime.Now
              },
@@ -75,10 +80,11 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
                Id = 6,
                LocationId = 2,
                Name = "Meeting Room C",
-               ChairCount = 0,
+               AttendanceCapacity = 25,
+               HasChairs = true,
                CreatedDate = DateTime.Now,
                ModifiedDate = DateTime.Now
-           });
+           });;
         }
     }
 }

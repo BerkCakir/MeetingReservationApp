@@ -54,7 +54,8 @@ namespace MeetingReservationApp.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ChairCount = table.Column<int>(type: "int", nullable: false),
+                    AttendanceCapacity = table.Column<int>(type: "int", nullable: false),
+                    HasChairs = table.Column<bool>(type: "bit", nullable: false),
                     LocationId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -119,34 +120,34 @@ namespace MeetingReservationApp.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Locations",
                 columns: new[] { "Id", "CreatedDate", "ModifiedDate", "Name", "OfficeEndHours", "OfficeEndMinutes", "OfficeStartHours", "OfficeStartMinutes" },
-                values: new object[] { 1, new DateTime(2021, 10, 6, 23, 27, 0, 73, DateTimeKind.Local).AddTicks(1168), new DateTime(2021, 10, 6, 23, 27, 0, 73, DateTimeKind.Local).AddTicks(1460), "Amsterdam", 17, 0, 8, 30 });
+                values: new object[] { 1, new DateTime(2021, 10, 7, 0, 12, 56, 563, DateTimeKind.Local).AddTicks(2926), new DateTime(2021, 10, 7, 0, 12, 56, 563, DateTimeKind.Local).AddTicks(3186), "Amsterdam", 17, 0, 8, 30 });
 
             migrationBuilder.InsertData(
                 table: "Locations",
                 columns: new[] { "Id", "CreatedDate", "ModifiedDate", "Name", "OfficeEndHours", "OfficeEndMinutes", "OfficeStartHours", "OfficeStartMinutes" },
-                values: new object[] { 2, new DateTime(2021, 10, 6, 23, 27, 0, 73, DateTimeKind.Local).AddTicks(1741), new DateTime(2021, 10, 6, 23, 27, 0, 73, DateTimeKind.Local).AddTicks(1743), "Berlin", 20, 0, 8, 30 });
+                values: new object[] { 2, new DateTime(2021, 10, 7, 0, 12, 56, 563, DateTimeKind.Local).AddTicks(3436), new DateTime(2021, 10, 7, 0, 12, 56, 563, DateTimeKind.Local).AddTicks(3438), "Berlin", 20, 0, 8, 30 });
 
             migrationBuilder.InsertData(
                 table: "RoomReservations",
                 columns: new[] { "Id", "AttendantCount", "CreatedDate", "Description", "MeetingEndTime", "MeetingStartTime", "ModifiedDate", "RoomId", "RoomReservationGuid" },
-                values: new object[] { 1, 7, new DateTime(2021, 10, 6, 23, 27, 0, 82, DateTimeKind.Local).AddTicks(2973), "Marketing Unit Meeting", new DateTime(2021, 10, 2, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 2, 11, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 6, 23, 27, 0, 82, DateTimeKind.Local).AddTicks(2988), 2, new Guid("019ee26d-5111-4d96-abfa-5bd6c966d529") });
+                values: new object[] { 1, 7, new DateTime(2021, 10, 7, 0, 12, 56, 571, DateTimeKind.Local).AddTicks(2147), "Marketing Unit Meeting", new DateTime(2021, 10, 2, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 2, 11, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 7, 0, 12, 56, 571, DateTimeKind.Local).AddTicks(2160), 2, new Guid("019ee26d-5111-4d96-abfa-5bd6c966d529") });
 
             migrationBuilder.InsertData(
                 table: "InventoryReservations",
                 columns: new[] { "Id", "CreatedDate", "InventoryId", "ModifiedDate", "RoomReservationGuid" },
-                values: new object[] { 1, new DateTime(2021, 10, 6, 23, 27, 0, 88, DateTimeKind.Local).AddTicks(4217), 2, new DateTime(2021, 10, 6, 23, 27, 0, 88, DateTimeKind.Local).AddTicks(4230), new Guid("019ee26d-5111-4d96-abfa-5bd6c966d529") });
+                values: new object[] { 1, new DateTime(2021, 10, 7, 0, 12, 56, 576, DateTimeKind.Local).AddTicks(9454), 2, new DateTime(2021, 10, 7, 0, 12, 56, 576, DateTimeKind.Local).AddTicks(9467), new Guid("019ee26d-5111-4d96-abfa-5bd6c966d529") });
 
             migrationBuilder.InsertData(
                 table: "Rooms",
-                columns: new[] { "Id", "ChairCount", "CreatedDate", "LocationId", "ModifiedDate", "Name" },
+                columns: new[] { "Id", "AttendanceCapacity", "CreatedDate", "HasChairs", "LocationId", "ModifiedDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, 10, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1011), 1, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1025), "Meeting Room 1" },
-                    { 2, 0, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1033), 1, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1034), "Meeting Room 2" },
-                    { 3, 5, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1038), 1, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1039), "Meeting Room 3" },
-                    { 4, 20, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1043), 2, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1044), "Meeting Room A" },
-                    { 5, 5, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1048), 2, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1049), "Meeting Room B" },
-                    { 6, 0, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1052), 2, new DateTime(2021, 10, 6, 23, 27, 0, 78, DateTimeKind.Local).AddTicks(1053), "Meeting Room C" }
+                    { 1, 10, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(6987), true, 1, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7001), "Meeting Room 1" },
+                    { 2, 12, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7009), true, 1, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7011), "Meeting Room 2" },
+                    { 3, 5, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7014), false, 1, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7015), "Meeting Room 3" },
+                    { 4, 20, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7018), true, 2, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7019), "Meeting Room A" },
+                    { 5, 5, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7023), false, 2, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7024), "Meeting Room B" },
+                    { 6, 25, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7027), true, 2, new DateTime(2021, 10, 7, 0, 12, 56, 567, DateTimeKind.Local).AddTicks(7028), "Meeting Room C" }
                 });
 
             migrationBuilder.InsertData(
@@ -154,14 +155,14 @@ namespace MeetingReservationApp.Data.Migrations
                 columns: new[] { "Id", "CreatedDate", "InventoryPurpose", "IsFixed", "ModifiedDate", "Name", "RoomId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5684), 2, true, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5696), "Beamer", 1 },
-                    { 2, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5705), 1, true, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5706), "WhiteBoard", 2 },
-                    { 3, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5710), 2, false, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5711), "Television", 3 },
-                    { 4, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5714), 1, true, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5716), "WhiteBoard", 3 },
-                    { 5, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5719), 3, true, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5720), "Video Conference Equipment", 4 },
-                    { 6, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5724), 2, false, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5725), "Television", 5 },
-                    { 7, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5728), 3, true, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5730), "Television", 5 },
-                    { 8, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5733), 2, true, new DateTime(2021, 10, 6, 23, 27, 0, 80, DateTimeKind.Local).AddTicks(5734), "Beamer", 6 }
+                    { 1, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7831), 2, true, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7845), "Beamer", 1 },
+                    { 2, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7855), 1, true, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7856), "WhiteBoard", 2 },
+                    { 3, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7859), 2, false, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7860), "Television", 3 },
+                    { 4, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7863), 1, true, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7864), "WhiteBoard", 3 },
+                    { 5, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7868), 3, true, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7869), "Video Conference Equipment", 4 },
+                    { 6, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7872), 2, false, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7873), "Television", 5 },
+                    { 7, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7876), 3, true, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7877), "Television", 5 },
+                    { 8, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7880), 2, true, new DateTime(2021, 10, 7, 0, 12, 56, 569, DateTimeKind.Local).AddTicks(7881), "Beamer", 6 }
                 });
 
             migrationBuilder.CreateIndex(
