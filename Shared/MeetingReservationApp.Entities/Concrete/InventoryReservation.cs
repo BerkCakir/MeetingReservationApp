@@ -9,7 +9,8 @@ namespace MeetingReservationApp.Entities.Concrete
 {
     public class InventoryReservation : EntityBase, IEntity
     {
-        public int RoomReservationId { get; set; }
+        public Guid RoomReservationGuid { get; set; }
+        public RoomReservation RoomReservation { get; set; }
         public int InventoryId { get; set; }
     }
 }

@@ -34,7 +34,8 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
                  MeetingEndTime = new DateTime(2021, 10, 2, 12, 0, 0),
                  AttendantCount = 7,
                  CreatedDate = DateTime.Now,
-                 ModifiedDate = DateTime.Now
+                 ModifiedDate = DateTime.Now,
+                 RoomReservationGuid = Guid.Parse("019ee26d-5111-4d96-abfa-5bd6c966d529")
              });
         }
     }
