@@ -51,7 +51,53 @@ namespace MeetingReservationApp.Managers.Concrete
             return new DataResult<IList<Room>>(ResultStatus.Error, "Not any office available at desired time for your location", null);
 
         }
+        public async Task<IResult> Add(RoomReservationAddDto roomReservationAddDto, int locationId)
+        {
+            var newReservation = _mapper.Map<RoomReservation>(roomReservationAddDto);
+
+            #region Check Time Interval is During Office Hours
+            var result = await CheckHoursForLocation(newReservation, locationId);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+            #endregion
+
+            #region Check if Another Meeting Exists During the Time Interval
+            result = await CheckHoursForOffice(newReservation.MeetingStartTime, newReservation.MeetingEndTime, newReservation.RoomId);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+            #endregion
+
+            #region Add Reservation For Room
+            newReservation.RoomReservationGuid = Guid.NewGuid();
+            await _unitOfWork.RoomReservations.AddAsync(newReservation);
+            #endregion
+
+            await _unitOfWork.SaveAsync(); // sava all both reservations and related inventories
+            return new Result(ResultStatus.Success, "Reservation added successfully");
+        }
+
+
         #region Private Bussiness Methods
+        private async Task<IResult> CheckHoursForLocation(RoomReservation newReservation, int locationId)
+        {
+            #region Get location and create working hours with date
+            var location = await _unitOfWork.Locations.GetAsync(x => x.Id == locationId);
+            DateTime locationStartDate = newReservation.MeetingStartTime.Date.AddHours(location.OfficeStartHours).AddMinutes(location.OfficeStartMinutes);
+            DateTime locationEndDate = newReservation.MeetingStartTime.Date.AddHours(location.OfficeEndHours).AddMinutes(location.OfficeEndMinutes);
+            #endregion
+
+            if (!(newReservation.MeetingStartTime >= locationStartDate && newReservation.MeetingStartTime <= locationEndDate &&
+                newReservation.MeetingEndTime >= locationStartDate && newReservation.MeetingEndTime <= locationEndDate))
+            {   // desired meeting time isn't between office working hours
+
+                return new Result(ResultStatus.Error, $"{location.Name} Office is closed at desired time");
+            }
+            return new Result(ResultStatus.Success);
+        }
         private async Task<IResult> CheckHoursForOffice(DateTime newStartTime, DateTime newEndTime, int roomId)
         {
             bool exists = await _unitOfWork.RoomReservations.AnyAsync(c => c.RoomId == roomId &&

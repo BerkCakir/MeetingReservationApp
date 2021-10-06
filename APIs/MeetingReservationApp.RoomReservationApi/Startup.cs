@@ -1,3 +1,4 @@
+using MeetingReservationApp.Managers.AutoMapper;
 using MeetingReservationApp.Managers.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,8 +27,9 @@ namespace MeetingReservationApp.RoomReservationApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers(); 
-            
+            services.AddControllers();
+
+            services.AddAutoMapper(typeof(RoomReservationProfile));
             services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
         }
 

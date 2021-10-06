@@ -32,5 +32,16 @@ namespace MeetingReservationApp.RoomReservationApi.Controllers
             };
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Add(RoomReservationAddDto roomReservationAddDto)
+        {
+            var response = await _roomReservationService.Add(roomReservationAddDto, 1);
+
+            return new ObjectResult(response)
+            {
+                StatusCode = 200
+            };
+        }
+
     }
 }
