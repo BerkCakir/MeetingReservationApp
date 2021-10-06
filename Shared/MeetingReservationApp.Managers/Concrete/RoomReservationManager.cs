@@ -71,6 +71,14 @@ namespace MeetingReservationApp.Managers.Concrete
             }
             #endregion
 
+            #region Check Attendant Capacity
+            result = await CheckAttendantCapacity(newReservation.RoomId, newReservation.AttendantCount);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+            #endregion
+
             #region Add Reservation For Room
             newReservation.RoomReservationGuid = Guid.NewGuid();
             await _unitOfWork.RoomReservations.AddAsync(newReservation);
@@ -100,7 +108,7 @@ namespace MeetingReservationApp.Managers.Concrete
         }
         private async Task<IResult> CheckHoursForOffice(DateTime newStartTime, DateTime newEndTime, int roomId)
         {
-            bool exists = await _unitOfWork.RoomReservations.AnyAsync(c => c.RoomId == roomId &&
+            var exists = await _unitOfWork.RoomReservations.AnyAsync(c => c.RoomId == roomId &&
                                                                       ((newStartTime >= c.MeetingStartTime && newStartTime <= c.MeetingEndTime) ||
                                                                        (newEndTime >= c.MeetingStartTime && newEndTime <= c.MeetingEndTime) ||
                                                                        (newStartTime.Date == c.MeetingStartTime.Date &&
@@ -110,6 +118,16 @@ namespace MeetingReservationApp.Managers.Concrete
             {
                 // Another meeting exists at the desired time interval
                 return new Result(ResultStatus.Error, "Another meeting exists at the desired time interval");
+            }
+            return new Result(ResultStatus.Success);
+        }
+        private async Task<IResult> CheckAttendantCapacity(int roomId, int attendantCount)
+        {
+            var office = await _unitOfWork.Rooms.GetAsync(c => c.Id == roomId);
+            
+            if(office.AttendanceCapacity < attendantCount)
+            {
+                return new Result(ResultStatus.Error, "Requested attendant count is greater than the office's capacity");
             }
             return new Result(ResultStatus.Success);
         }
