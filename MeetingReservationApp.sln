@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{2C0D7F6C-9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.RoomReservationApi", "APIs\MeetingReservationApp.RoomReservationApi\MeetingReservationApp.RoomReservationApi.csproj", "{1AA5BAF1-61B4-4C8C-8E45-94D837989BC8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{70F7CF94-89D1-4949-9D77-DBCAB4DEB1E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{61F20F5E-1A24-476F-8CD5-F886D867C555}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,10 @@ Global
 		{1AA5BAF1-61B4-4C8C-8E45-94D837989BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AA5BAF1-61B4-4C8C-8E45-94D837989BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AA5BAF1-61B4-4C8C-8E45-94D837989BC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F20F5E-1A24-476F-8CD5-F886D867C555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F20F5E-1A24-476F-8CD5-F886D867C555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F20F5E-1A24-476F-8CD5-F886D867C555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F20F5E-1A24-476F-8CD5-F886D867C555}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +61,7 @@ Global
 		{F4C3FCE4-1453-4B8B-BD9B-E206471911B0} = {0E56BD1D-A735-4761-8EFD-C4F49D649BD8}
 		{A609EA26-2A40-453B-AC38-ED19F519D19E} = {0E56BD1D-A735-4761-8EFD-C4F49D649BD8}
 		{1AA5BAF1-61B4-4C8C-8E45-94D837989BC8} = {2C0D7F6C-9650-45EA-8817-ECF224D08F4C}
+		{61F20F5E-1A24-476F-8CD5-F886D867C555} = {70F7CF94-89D1-4949-9D77-DBCAB4DEB1E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {234717FC-13BD-4EC7-B7C8-1F62311E3D50}
