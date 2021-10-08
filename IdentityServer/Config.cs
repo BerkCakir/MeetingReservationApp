@@ -32,9 +32,9 @@ namespace IdentityServer
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope("room_reservation_full_permission","RoomReservation API Authorization"),
-                new ApiScope("inventory_reservation_full_permission","InventoryReservation API Authorization"),
-                new ApiScope("gateway_full_permission","Gateway erişimi"),
+                new ApiScope("room_reservation_full_permission","RoomReservation API Auth"),
+                new ApiScope("inventory_reservation_full_permission","InventoryReservation API Auth"),
+                new ApiScope("gateway_full_permission","Gateway Auth"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
 
@@ -55,7 +55,7 @@ namespace IdentityServer
                     ClientId = "WebClientForUser",
                     ClientSecrets={new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    AllowedScopes = { "room_reservation_full_permission","inventory_reservation_full_permission",
+                    AllowedScopes = { "gateway_full_permission", "room_reservation_full_permission","inventory_reservation_full_permission",
                                     IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId,
                                     IdentityServerConstants.StandardScopes.Profile, IdentityServerConstants.StandardScopes.OfflineAccess,
                                     IdentityServerConstants.LocalApi.ScopeName ,"roles"},
