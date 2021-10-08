@@ -17,7 +17,11 @@ namespace MeetingReservationApp.Gateway
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+
+            Host.CreateDefaultBuilder(args).ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                config.AddJsonFile($"ocelot.{hostingContext.HostingEnvironment.EnvironmentName.ToLower()}.json").AddEnvironmentVariables();
+            })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
