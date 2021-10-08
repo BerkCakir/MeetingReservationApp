@@ -57,7 +57,6 @@ namespace IdentityServer
                 .AddAspNetIdentity<ApplicationUser>();
 
             builder.AddResourceOwnerValidator<IdentityResourceOwnerPasswordValidator>(); //Identityserver #9
-            builder.AddExtensionGrantValidator<TokenExchangeExtensionGrantValidator>();
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
