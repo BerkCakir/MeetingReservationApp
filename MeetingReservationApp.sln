@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{A3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.Gateway", "Gateways\MeetingReservationApp.Gateway\MeetingReservationApp.Gateway.csproj", "{3661890B-F4FB-44D9-A5B5-3B00F7CE4D97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.InventoryReservationApi", "Apis\MeetingReservationApp.InventoryReservationApi\MeetingReservationApp.InventoryReservationApi.csproj", "{F3C874D0-1BC7-4C14-9028-C156811658A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{3661890B-F4FB-44D9-A5B5-3B00F7CE4D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3661890B-F4FB-44D9-A5B5-3B00F7CE4D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3661890B-F4FB-44D9-A5B5-3B00F7CE4D97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3C874D0-1BC7-4C14-9028-C156811658A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3C874D0-1BC7-4C14-9028-C156811658A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3C874D0-1BC7-4C14-9028-C156811658A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3C874D0-1BC7-4C14-9028-C156811658A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{1AA5BAF1-61B4-4C8C-8E45-94D837989BC8} = {2C0D7F6C-9650-45EA-8817-ECF224D08F4C}
 		{61F20F5E-1A24-476F-8CD5-F886D867C555} = {70F7CF94-89D1-4949-9D77-DBCAB4DEB1E3}
 		{3661890B-F4FB-44D9-A5B5-3B00F7CE4D97} = {A3096B0B-95D9-4560-8D34-AF6AC9A8D03D}
+		{F3C874D0-1BC7-4C14-9028-C156811658A2} = {2C0D7F6C-9650-45EA-8817-ECF224D08F4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {234717FC-13BD-4EC7-B7C8-1F62311E3D50}
