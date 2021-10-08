@@ -16,6 +16,23 @@
         "AuthenticationProviderKey": "GatewayAuthenticationScheme",
         "AllowedScopes": [ "room_reservation_full_permission" ]
       }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/services/inventoryreservation/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme",
+        "AllowedScopes": [ "inventory_reservation_full_permission" ]
+      }
     }
   ],
   "GlobalConfiguration": {
