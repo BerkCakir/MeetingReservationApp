@@ -1,3 +1,5 @@
+using MeetingReservationApp.Managers.Abstract;
+using MeetingReservationApp.Managers.Concrete;
 using MeetingReservationApp.Managers.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -46,6 +48,7 @@ namespace MeetingReservationApp.InventoryReservationApi
             });
 
             services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
+            services.AddScoped<IInventoryReservationService, InventoryReservationManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

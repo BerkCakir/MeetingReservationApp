@@ -1,4 +1,6 @@
+using MeetingReservationApp.Managers.Abstract;
 using MeetingReservationApp.Managers.AutoMapper;
+using MeetingReservationApp.Managers.Concrete;
 using MeetingReservationApp.Managers.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -47,6 +49,7 @@ namespace MeetingReservationApp.RoomReservationApi
 
             services.AddAutoMapper(typeof(RoomReservationProfile));
             services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
+            services.AddScoped<IRoomReservationService, RoomReservationManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

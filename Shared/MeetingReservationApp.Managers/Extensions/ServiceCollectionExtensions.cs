@@ -19,8 +19,6 @@ namespace MeetingReservationApp.Managers.Extensions
         {
             serviceCollection.AddDbContext<MeetingReservationAppContext>(opt => opt.UseSqlServer(connectionString));
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
-            serviceCollection.AddScoped<IRoomReservationService, RoomReservationManager>();
-            serviceCollection.AddScoped<IInventoryReservationService, InventoryReservationManager>();
 
             return serviceCollection;
         }
