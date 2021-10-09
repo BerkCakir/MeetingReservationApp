@@ -1,10 +1,6 @@
 ﻿using MeetingReservationApp.Data.Abstract;
 using MeetingReservationApp.Data.Concrete.EntityFramework.Contexts;
 using MeetingReservationApp.Data.Concrete.EntityFramework.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MeetingReservationApp.Data.Concrete

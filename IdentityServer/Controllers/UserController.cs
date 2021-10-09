@@ -1,11 +1,8 @@
 ﻿using IdentityServer.Dtos;
 using IdentityServer.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
@@ -50,7 +47,7 @@ namespace IdentityServer.Controllers
         {
             var userIdClaim = User.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub);
 
-            if(userIdClaim == null)
+            if (userIdClaim == null)
             {
                 return BadRequest();
             }
@@ -60,7 +57,7 @@ namespace IdentityServer.Controllers
                 return BadRequest();
             }
 
-            return Ok(new { Id = user.Id,  UserName = user.UserName, Email = user.Email, Location = user.Location});
+            return Ok(new { Id = user.Id, UserName = user.UserName, Email = user.Email, Location = user.Location });
         }
     }
 }

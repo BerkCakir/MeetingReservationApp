@@ -8,8 +8,6 @@ using MeetingReservationApp.Shared.Utilities.Results.ComplexTypes;
 using MeetingReservationApp.Shared.Utilities.Results.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MeetingReservationApp.Managers.Concrete
@@ -30,7 +28,7 @@ namespace MeetingReservationApp.Managers.Concrete
 
             #region Check the given reservation exists
             var roomReservation = await _unitOfWork.RoomReservations.GetAsync(x => x.RoomReservationGuid == newReservation.RoomReservationGuid);
-            if(roomReservation.Id == 0)
+            if (roomReservation.Id == 0)
             {
                 return new Result(ResultStatus.Error, "Related room reservation not exists");
             }
@@ -59,7 +57,7 @@ namespace MeetingReservationApp.Managers.Concrete
             #endregion
 
             List<Inventory> availableInventories = new List<Inventory>();
-            var inventories = await _unitOfWork.Inventories.GetAllAsync(x=> x.Room.LocationId == locationId, x=> x.Room);
+            var inventories = await _unitOfWork.Inventories.GetAllAsync(x => x.Room.LocationId == locationId, x => x.Room);
             if (inventories.Count > 0)
             {
                 foreach (var inventory in inventories)
@@ -86,8 +84,8 @@ namespace MeetingReservationApp.Managers.Concrete
                                                                       ((newStartTime >= x.RoomReservation.MeetingStartTime && newStartTime <= x.RoomReservation.MeetingEndTime) ||
                                                                        (newEndTime >= x.RoomReservation.MeetingStartTime && newEndTime <= x.RoomReservation.MeetingEndTime) ||
                                                                        (newStartTime.Date == x.RoomReservation.MeetingStartTime.Date &&
-                                                                       newStartTime <= x.RoomReservation.MeetingStartTime && newEndTime >= x.RoomReservation.MeetingEndTime)), 
-                                                                       x=> x.RoomReservation);
+                                                                       newStartTime <= x.RoomReservation.MeetingStartTime && newEndTime >= x.RoomReservation.MeetingEndTime)),
+                                                                       x => x.RoomReservation);
 
             if (exists.Count > 0)
             {

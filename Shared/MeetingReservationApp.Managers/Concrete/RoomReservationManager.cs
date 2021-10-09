@@ -8,8 +8,6 @@ using MeetingReservationApp.Shared.Utilities.Results.ComplexTypes;
 using MeetingReservationApp.Shared.Utilities.Results.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MeetingReservationApp.Managers.Concrete
@@ -100,7 +98,7 @@ namespace MeetingReservationApp.Managers.Concrete
                                                                                                    (newReservation.MeetingStartTime.Date == x.RoomReservation.MeetingStartTime.Date &&
                                                                                                    newReservation.MeetingStartTime <= x.RoomReservation.MeetingStartTime && newReservation.MeetingEndTime >= x.RoomReservation.MeetingEndTime)),
                                                                                                     x => x.RoomReservation);
-                    if(inventoryReservations.Count <= 0)
+                    if (inventoryReservations.Count <= 0)
                     { // if room's inventory is not fixed, but have no other reservations - directly add it to current reservation
                         await _unitOfWork.InventoryReservations.AddAsync(new InventoryReservation { RoomReservationGuid = newReservation.RoomReservationGuid, InventoryId = inventory.Id });
                     }
@@ -149,8 +147,8 @@ namespace MeetingReservationApp.Managers.Concrete
         private async Task<IResult> CheckAttendantCapacity(int roomId, int attendantCount)
         {
             var office = await _unitOfWork.Rooms.GetAsync(x => x.Id == roomId);
-            
-            if(office.AttendanceCapacity < attendantCount)
+
+            if (office.AttendanceCapacity < attendantCount)
             {
                 return new Result(ResultStatus.Error, "Requested attendant count is greater than the office's capacity");
             }

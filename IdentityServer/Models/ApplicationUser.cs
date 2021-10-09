@@ -5,6 +5,6 @@ namespace IdentityServer.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
-        public int Location{ get; set; } // Amsterdam or Berlin
+        public int Location { get; set; } // Amsterdam or Berlin
     }
 }

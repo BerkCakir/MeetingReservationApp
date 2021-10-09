@@ -7,7 +7,6 @@ using IdentityServer.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -44,16 +43,16 @@ namespace IdentityServer
                 var host = CreateHostBuilder(args).Build();
 
                 using (var scope = host.Services.CreateScope())
-                {  
+                {
                     // for migration on startup
                     var serviceProvider = scope.ServiceProvider;
                     var applicationDbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
                     applicationDbContext.Database.Migrate();
 
                     var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-                    if(!userManager.Users.Any())
+                    if (!userManager.Users.Any())
                     {
-                        userManager.CreateAsync(new ApplicationUser {UserName="Steve", Email="Steve@domain.com",Location=1 }, "Password12*").Wait();
+                        userManager.CreateAsync(new ApplicationUser { UserName = "Steve", Email = "Steve@domain.com", Location = 1 }, "Password12*").Wait();
                         userManager.CreateAsync(new ApplicationUser { UserName = "Sarah", Email = "Sarah@domain.com", Location = 2 }, "Abcabc12*").Wait();
                     }
                 }

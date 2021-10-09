@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MeetingReservationApp.Shared.Utilities.Enums
+﻿namespace MeetingReservationApp.Shared.Utilities.Enums
 {
     public enum InventoryPurposeType
     {
