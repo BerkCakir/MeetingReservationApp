@@ -51,6 +51,10 @@ namespace MeetingReservationApp.Shared.Utilities.Messages
             {
                 return "Another inventory reservation exists at the desired time interval";
             }
+            public static string SamePurposeInventoryExists()
+            {
+                return "Another inventory exists for the same purpose for the meeting";
+            }
         }
     }
 }
