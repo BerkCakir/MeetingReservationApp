@@ -22,7 +22,7 @@ namespace MeetingReservationApp.InventoryReservationApi.Controllers
         {
             // returns all available offices for selected location and time interval
             var response = await _inventoryReservationService.GetAvailableInventories(availabilitySearchDto, 1);
-            return CreateResult(response);
+            return CreateResultWithData(response);
         }
 
         [HttpPost]

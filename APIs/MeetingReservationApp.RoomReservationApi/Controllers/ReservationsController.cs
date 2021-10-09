@@ -22,7 +22,7 @@ namespace MeetingReservationApp.RoomReservationApi.Controllers
         {
             // returns all available offices for selected location and time interval
             var response = await _roomReservationService.GetAvailableRooms(roomAvailabilitySearchDto, 1);
-            return CreateResult(response);
+            return CreateResultWithData(response);
         }
 
         [HttpPost]
