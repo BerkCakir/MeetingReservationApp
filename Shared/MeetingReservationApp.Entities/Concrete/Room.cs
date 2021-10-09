@@ -11,5 +11,6 @@ namespace MeetingReservationApp.Entities.Concrete
         public int LocationId { get; set; }
         public Location Location { get; set; }
         public ICollection<Inventory> Inventories { get; set; } // inventories fixed in the room
+        public ICollection<RoomReservation> RoomReservations { get; set; }
     }
 }

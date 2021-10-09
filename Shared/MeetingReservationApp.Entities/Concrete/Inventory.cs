@@ -1,5 +1,6 @@
 ﻿using MeetingReservationApp.Shared.Entites.Abstract;
 using MeetingReservationApp.Shared.Utilities.Enums;
+using System.Collections.Generic;
 
 namespace MeetingReservationApp.Entities.Concrete
 {
@@ -10,6 +11,7 @@ namespace MeetingReservationApp.Entities.Concrete
         public int RoomId { get; set; } // if resource cannot be moved, it should assigned to a room id
         public Room Room { get; set; }
         public InventoryPurposeType InventoryPurpose { get; set; }  // ie. television or beamer = watching, whiteboard = drawing 
+        public ICollection<InventoryReservation> InventoryReservations { get; set; }
 
     }
 }

@@ -28,7 +28,7 @@ namespace MeetingReservationApp.Managers.Concrete
             var newReservation = _mapper.Map<InventoryReservation>(inventoryReservationAddDto);
 
             #region Check the given reservation exists
-            var roomReservation = await _unitOfWork.RoomReservations.GetAsync(x => x.RoomReservationGuid == newReservation.RoomReservationGuid, x=> x.InventoryReservation);
+            var roomReservation = await _unitOfWork.RoomReservations.GetAsync(x => x.RoomReservationGuid == newReservation.RoomReservationGuid, x=> x.InventoryReservations);
             if (roomReservation.Id == 0)
             {
                 return new Result(ResultStatus.Error, Messages.InventoryReservation.RelatedReservationNotExists());
@@ -44,10 +44,10 @@ namespace MeetingReservationApp.Managers.Concrete
             #endregion
 
             #region Another inventory exists for the same purpose
-            if (roomReservation.InventoryReservation.Count > 0)
+            if (roomReservation.InventoryReservations.Count > 0)
             {
                 var newInventory = await _unitOfWork.Inventories.GetAsync(x => x.Id == newReservation.InventoryId);
-                foreach (var inventoryReservation in roomReservation.InventoryReservation)
+                foreach (var inventoryReservation in roomReservation.InventoryReservations)
                 {
                     var exists = await _unitOfWork.Inventories.AnyAsync(x => x.Id == inventoryReservation.InventoryId && x.InventoryPurpose == newInventory.InventoryPurpose);
                     if (exists)

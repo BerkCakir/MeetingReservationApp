@@ -8,5 +8,6 @@ namespace MeetingReservationApp.Entities.Concrete
         public Guid RoomReservationGuid { get; set; }
         public RoomReservation RoomReservation { get; set; }
         public int InventoryId { get; set; }
+        public Inventory Inventory { get; set; }
     }
 }
