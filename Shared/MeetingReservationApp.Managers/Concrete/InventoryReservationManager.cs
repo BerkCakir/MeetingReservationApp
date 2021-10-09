@@ -62,9 +62,14 @@ namespace MeetingReservationApp.Managers.Concrete
             {
                 foreach (var inventory in inventories)
                 {
+                    if(inventory.IsFixed)
+                    {
+                        continue; // fixed inventories can't get reserved
+                    }
                     var result = await CheckHoursForInventory(desiredStartDate, desiredEndDate, inventory.Id);
                     if (result.ResultStatus == ResultStatus.Success)
                     {
+                        inventory.Room = null; // the owner room object of the inventory not returned
                         availableInventories.Add(inventory);
                     }
                 }
