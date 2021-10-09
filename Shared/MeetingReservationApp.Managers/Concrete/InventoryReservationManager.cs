@@ -3,6 +3,7 @@ using MeetingReservationApp.Data.Abstract;
 using MeetingReservationApp.Entities.Concrete;
 using MeetingReservationApp.Entities.Dtos;
 using MeetingReservationApp.Managers.Abstract;
+using MeetingReservationApp.Shared.Utilities.Messages;
 using MeetingReservationApp.Shared.Utilities.Results.Abstract;
 using MeetingReservationApp.Shared.Utilities.Results.ComplexTypes;
 using MeetingReservationApp.Shared.Utilities.Results.Concrete;
@@ -30,7 +31,7 @@ namespace MeetingReservationApp.Managers.Concrete
             var roomReservation = await _unitOfWork.RoomReservations.GetAsync(x => x.RoomReservationGuid == newReservation.RoomReservationGuid);
             if (roomReservation.Id == 0)
             {
-                return new Result(ResultStatus.Error, "Related room reservation not exists");
+                return new Result(ResultStatus.Error, Messages.InventoryReservation.RelatedReservationNotExists());
             }
             #endregion
 
@@ -45,7 +46,7 @@ namespace MeetingReservationApp.Managers.Concrete
             #region Create new inventory reservation
             await _unitOfWork.InventoryReservations.AddAsync(newReservation);
             await _unitOfWork.SaveAsync();
-            return new Result(ResultStatus.Success, "Inventory reservation added successfully");
+            return new Result(ResultStatus.Success, Messages.InventoryReservation.Success());
             #endregion
         }
 
@@ -79,7 +80,7 @@ namespace MeetingReservationApp.Managers.Concrete
                 }
             }
             // not any office available
-            return new DataResult<IList<Inventory>>(ResultStatus.Error, "Not any inventory available at desired time for your location", null);
+            return new DataResult<IList<Inventory>>(ResultStatus.Error, Messages.InventoryReservation.HoursNotAvailableForInventory(), null);
         }
 
         #region Private Bussiness Methods
@@ -94,8 +95,8 @@ namespace MeetingReservationApp.Managers.Concrete
 
             if (exists.Count > 0)
             {
-                // Another meeting exists at the desired time interval
-                return new Result(ResultStatus.Error, "Another inventory reservation exists at the desired time interval");
+                // Another reservation exists at the desired time interval
+                return new Result(ResultStatus.Error, Messages.InventoryReservation.AnotherReservationExists());
             }
             return new Result(ResultStatus.Success);
         }

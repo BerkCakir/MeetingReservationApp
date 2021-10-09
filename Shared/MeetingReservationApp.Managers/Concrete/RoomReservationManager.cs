@@ -3,6 +3,7 @@ using MeetingReservationApp.Data.Abstract;
 using MeetingReservationApp.Entities.Concrete;
 using MeetingReservationApp.Entities.Dtos;
 using MeetingReservationApp.Managers.Abstract;
+using MeetingReservationApp.Shared.Utilities.Messages;
 using MeetingReservationApp.Shared.Utilities.Results.Abstract;
 using MeetingReservationApp.Shared.Utilities.Results.ComplexTypes;
 using MeetingReservationApp.Shared.Utilities.Results.Concrete;
@@ -46,7 +47,7 @@ namespace MeetingReservationApp.Managers.Concrete
                 }
             }
             // not any office available
-            return new DataResult<IList<Room>>(ResultStatus.Error, "Not any office available at desired time for your location", null);
+            return new DataResult<IList<Room>>(ResultStatus.Error, Messages.RoomReservation.HoursNotAvailableForOffice(), null);
 
         }
         public async Task<IResult> Add(RoomReservationAddDto roomReservationAddDto, int locationId)
@@ -108,7 +109,7 @@ namespace MeetingReservationApp.Managers.Concrete
             #endregion
 
             await _unitOfWork.SaveAsync(); // sava all both reservations and related inventories
-            return new Result(ResultStatus.Success, "Room reservation added successfully");
+            return new Result(ResultStatus.Success, Messages.RoomReservation.Success());
         }
 
 
@@ -125,7 +126,7 @@ namespace MeetingReservationApp.Managers.Concrete
                 newReservation.MeetingEndTime >= locationStartDate && newReservation.MeetingEndTime <= locationEndDate))
             {   // desired meeting time isn't between office working hours
 
-                return new Result(ResultStatus.Error, $"{location.Name} Office is closed at desired time");
+                return new Result(ResultStatus.Error, Messages.RoomReservation.LocationHoursNotAvailable(location.Name));
             }
             return new Result(ResultStatus.Success);
         }
@@ -140,7 +141,7 @@ namespace MeetingReservationApp.Managers.Concrete
             if (exists)
             {
                 // Another meeting exists at the desired time interval
-                return new Result(ResultStatus.Error, "Another meeting exists at the desired time interval");
+                return new Result(ResultStatus.Error, Messages.RoomReservation.AnotherMeetingExists());
             }
             return new Result(ResultStatus.Success);
         }
@@ -150,7 +151,7 @@ namespace MeetingReservationApp.Managers.Concrete
 
             if (office.AttendanceCapacity < attendantCount)
             {
-                return new Result(ResultStatus.Error, "Requested attendant count is greater than the office's capacity");
+                return new Result(ResultStatus.Error, Messages.RoomReservation.AttendantCountExceeds());
             }
             return new Result(ResultStatus.Success);
         }
