@@ -22,7 +22,7 @@ namespace MeetingReservationApp.RoomReservationApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAvailableRooms(RoomAvailabilitySearchDto roomAvailabilitySearchDto)
+        public async Task<IActionResult> GetAvailableRooms(AvailabilitySearchDto roomAvailabilitySearchDto)
         {
             // returns all available offices for selected location and time interval
             var response = await _roomReservationService.GetAvailableRooms(roomAvailabilitySearchDto, 1);

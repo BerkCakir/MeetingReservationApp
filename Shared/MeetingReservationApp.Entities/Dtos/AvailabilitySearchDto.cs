@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MeetingReservationApp.Entities.Dtos
 {
-    public class RoomAvailabilitySearchDto
+    public class AvailabilitySearchDto
     {
         public DateTime DesiredDate { get; set; }
         public int StartHours { get; set; }

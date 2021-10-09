@@ -11,7 +11,7 @@ namespace MeetingReservationApp.Managers.Abstract
 {
     public interface IRoomReservationService
     {
-        Task<IDataResult<IList<Room>>> GetAvailableRooms(RoomAvailabilitySearchDto roomAvailabilitySearchDto, int locationId);
+        Task<IDataResult<IList<Room>>> GetAvailableRooms(AvailabilitySearchDto roomAvailabilitySearchDto, int locationId);
         Task<IResult> Add(RoomReservationAddDto roomReservationAddDto, int locationId);
     }
 }

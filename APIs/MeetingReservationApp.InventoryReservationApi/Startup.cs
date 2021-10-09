@@ -1,4 +1,5 @@
 using MeetingReservationApp.Managers.Abstract;
+using MeetingReservationApp.Managers.AutoMapper;
 using MeetingReservationApp.Managers.Concrete;
 using MeetingReservationApp.Managers.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -47,6 +48,7 @@ namespace MeetingReservationApp.InventoryReservationApi
                 c.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));  //IdentityServer
             });
 
+            services.AddAutoMapper(typeof(InventoryReservationProfile));
             services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
             services.AddScoped<IInventoryReservationService, InventoryReservationManager>();
         }

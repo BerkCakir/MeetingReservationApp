@@ -23,7 +23,7 @@ namespace MeetingReservationApp.Managers.Concrete
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IDataResult<IList<Room>>> GetAvailableRooms(RoomAvailabilitySearchDto roomAvailabilitySearchDto, int locationId)
+        public async Task<IDataResult<IList<Room>>> GetAvailableRooms(AvailabilitySearchDto roomAvailabilitySearchDto, int locationId)
         {
             #region Create dates
             DateTime desiredStartDate = roomAvailabilitySearchDto.DesiredDate.Date.AddHours(roomAvailabilitySearchDto.StartHours).AddMinutes(roomAvailabilitySearchDto.StartMinutes);
@@ -32,7 +32,7 @@ namespace MeetingReservationApp.Managers.Concrete
 
             List<Room> availableRooms = new List<Room>();
             var offices = await _unitOfWork.Rooms.GetAllAsync(x => x.LocationId == locationId);
-            if (offices != null)
+            if (offices.Count > 0)
             {
                 foreach (var office in offices)
                 {
@@ -110,7 +110,7 @@ namespace MeetingReservationApp.Managers.Concrete
             #endregion
 
             await _unitOfWork.SaveAsync(); // sava all both reservations and related inventories
-            return new Result(ResultStatus.Success, "Reservation added successfully");
+            return new Result(ResultStatus.Success, "Room reservation added successfully");
         }
 
 
