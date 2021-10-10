@@ -1,3 +1,4 @@
+using MeetingReservationApp.Web.Handler;
 using MeetingReservationApp.Web.Models;
 using MeetingReservationApp.Web.Services.Abstract;
 using MeetingReservationApp.Web.Services.Concrete;
@@ -34,7 +35,7 @@ namespace MeetingReservationApp.Web
             services.AddHttpClient<IUserService, UserService>(o =>
             {
                 o.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
-            });
+            }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
             // login cookie settings 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opts =>
