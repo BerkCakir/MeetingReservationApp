@@ -30,6 +30,11 @@ namespace MeetingReservationApp.Web
             services.AddHttpClient<IIdentityService, IdentityService>();
             services.Configure<ServiceApiSettings>(Configuration.GetSection("ServiceApiSettings"));
             services.Configure<ClientSettings>(Configuration.GetSection("ClientSettings"));
+            var serviceApiSettings = Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+            services.AddHttpClient<IUserService, UserService>(o =>
+            {
+                o.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
+            });
 
             // login cookie settings 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opts =>
