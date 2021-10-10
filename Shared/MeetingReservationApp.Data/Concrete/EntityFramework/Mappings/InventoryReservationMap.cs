@@ -19,7 +19,7 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
             builder.HasOne<RoomReservation>(a => a.RoomReservation).WithMany(c => c.InventoryReservations)
                                             .HasPrincipalKey(a => a.RoomReservationGuid).HasForeignKey(a => a.RoomReservationGuid);
            
-            builder.HasOne<Inventory>(a => a.Inventory).WithMany(c => c.InventoryReservations).HasForeignKey(a => a.InventoryId);
+            builder.HasOne<Inventory>(a => a.Inventory).WithMany(c => c.InventoryReservations).HasForeignKey(a => a.InventoryId).OnDelete(DeleteBehavior.NoAction);
 
             builder.HasData(
             new InventoryReservation

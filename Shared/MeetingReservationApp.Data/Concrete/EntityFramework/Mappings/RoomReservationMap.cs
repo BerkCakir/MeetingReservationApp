@@ -17,6 +17,7 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
             builder.Property(a => a.MeetingStartTime).IsRequired();
             builder.Property(a => a.MeetingEndTime).IsRequired();
             builder.Property(a => a.AttendantCount).IsRequired();
+            builder.Property(a => a.RoomReservationGuid).IsRequired();
 
             builder.HasOne<Room>(a => a.Room).WithMany(c => c.RoomReservations).HasForeignKey(a => a.RoomId);
 
