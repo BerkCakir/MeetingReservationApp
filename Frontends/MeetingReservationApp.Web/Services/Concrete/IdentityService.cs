@@ -65,7 +65,12 @@ namespace MeetingReservationApp.Web.Services.Concrete
 
                 var errorDto = JsonSerializer.Deserialize<ErrorDto>(responseContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 // match error from identity service to errordto
-                return new Result(ResultStatus.Error, errorDto.Errors.ToString());
+                var message = "";
+                errorDto.Errors.ForEach(x =>
+                {
+                    message += x + " ";
+                });
+                return new Result(ResultStatus.Error, message);
             }
 
             var userInfoRequest = new UserInfoRequest
