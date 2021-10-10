@@ -1,6 +1,8 @@
 ﻿using MeetingReservationApp.Shared.Utilities.Results.ComplexTypes;
 using MeetingReservationApp.Web.Models;
 using MeetingReservationApp.Web.Services.Abstract;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -45,6 +47,12 @@ namespace MeetingReservationApp.Web.Controllers
             }
 
             return RedirectToAction(nameof(Index), "Home");
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _identityService.RevokeRefreshToken();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }
