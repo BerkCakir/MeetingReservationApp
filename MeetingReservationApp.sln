@@ -5,17 +5,17 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{0E56BD1D-A735-4761-8EFD-C4F49D649BD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.Shared", "Shared\MeetingReservationApp.Shared\MeetingReservationApp.Shared.csproj", "{10E735BE-200D-45B4-BAD6-7C29834FFA35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingReservationApp.Shared", "Shared\MeetingReservationApp.Shared\MeetingReservationApp.Shared.csproj", "{10E735BE-200D-45B4-BAD6-7C29834FFA35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.Data", "Shared\MeetingReservationApp.Data\MeetingReservationApp.Data.csproj", "{7154D8CC-C686-4251-9391-65A8B7785512}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingReservationApp.Data", "Shared\MeetingReservationApp.Data\MeetingReservationApp.Data.csproj", "{7154D8CC-C686-4251-9391-65A8B7785512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.Entities", "Shared\MeetingReservationApp.Entities\MeetingReservationApp.Entities.csproj", "{F4C3FCE4-1453-4B8B-BD9B-E206471911B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingReservationApp.Entities", "Shared\MeetingReservationApp.Entities\MeetingReservationApp.Entities.csproj", "{F4C3FCE4-1453-4B8B-BD9B-E206471911B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.Managers", "Shared\MeetingReservationApp.Managers\MeetingReservationApp.Managers.csproj", "{A609EA26-2A40-453B-AC38-ED19F519D19E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingReservationApp.Managers", "Shared\MeetingReservationApp.Managers\MeetingReservationApp.Managers.csproj", "{A609EA26-2A40-453B-AC38-ED19F519D19E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{2C0D7F6C-9650-45EA-8817-ECF224D08F4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.RoomReservationApi", "APIs\MeetingReservationApp.RoomReservationApi\MeetingReservationApp.RoomReservationApi.csproj", "{1AA5BAF1-61B4-4C8C-8E45-94D837989BC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingReservationApp.RoomReservationApi", "APIs\MeetingReservationApp.RoomReservationApi\MeetingReservationApp.RoomReservationApi.csproj", "{1AA5BAF1-61B4-4C8C-8E45-94D837989BC8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{70F7CF94-89D1-4949-9D77-DBCAB4DEB1E3}"
 EndProject
@@ -23,9 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{A3096B0B-95D9-4560-8D34-AF6AC9A8D03D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.Gateway", "Gateways\MeetingReservationApp.Gateway\MeetingReservationApp.Gateway.csproj", "{3661890B-F4FB-44D9-A5B5-3B00F7CE4D97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingReservationApp.Gateway", "Gateways\MeetingReservationApp.Gateway\MeetingReservationApp.Gateway.csproj", "{3661890B-F4FB-44D9-A5B5-3B00F7CE4D97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.InventoryReservationApi", "Apis\MeetingReservationApp.InventoryReservationApi\MeetingReservationApp.InventoryReservationApi.csproj", "{F3C874D0-1BC7-4C14-9028-C156811658A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingReservationApp.InventoryReservationApi", "Apis\MeetingReservationApp.InventoryReservationApi\MeetingReservationApp.InventoryReservationApi.csproj", "{F3C874D0-1BC7-4C14-9028-C156811658A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontends", "Frontends", "{16BE0D97-4B4D-47CA-A984-C42360D9EA41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.Web", "Frontends\MeetingReservationApp.Web\MeetingReservationApp.Web.csproj", "{CA2FF89C-F054-42CB-9181-A91D5E45C997}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +69,10 @@ Global
 		{F3C874D0-1BC7-4C14-9028-C156811658A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3C874D0-1BC7-4C14-9028-C156811658A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3C874D0-1BC7-4C14-9028-C156811658A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA2FF89C-F054-42CB-9181-A91D5E45C997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA2FF89C-F054-42CB-9181-A91D5E45C997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA2FF89C-F054-42CB-9181-A91D5E45C997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA2FF89C-F054-42CB-9181-A91D5E45C997}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +86,7 @@ Global
 		{61F20F5E-1A24-476F-8CD5-F886D867C555} = {70F7CF94-89D1-4949-9D77-DBCAB4DEB1E3}
 		{3661890B-F4FB-44D9-A5B5-3B00F7CE4D97} = {A3096B0B-95D9-4560-8D34-AF6AC9A8D03D}
 		{F3C874D0-1BC7-4C14-9028-C156811658A2} = {2C0D7F6C-9650-45EA-8817-ECF224D08F4C}
+		{CA2FF89C-F054-42CB-9181-A91D5E45C997} = {16BE0D97-4B4D-47CA-A984-C42360D9EA41}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {234717FC-13BD-4EC7-B7C8-1F62311E3D50}
