@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace MeetingReservationApp.Entities.Dtos
 {
+    [BindProperties]
     public class AvailabilitySearchDto
     {
         public DateTime DesiredDate { get; set; }

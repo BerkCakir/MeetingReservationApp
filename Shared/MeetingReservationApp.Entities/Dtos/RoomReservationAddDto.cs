@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace MeetingReservationApp.Entities.Dtos
 {
+    [BindProperties]
     public class RoomReservationAddDto
     {
         public int RoomId { get; set; }

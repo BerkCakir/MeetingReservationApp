@@ -2,6 +2,7 @@
 using MeetingReservationApp.Managers.Abstract;
 using MeetingReservationApp.Shared.ControllerBases;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace MeetingReservationApp.RoomReservationApi.Controllers
@@ -17,11 +18,19 @@ namespace MeetingReservationApp.RoomReservationApi.Controllers
             _roomReservationService = roomReservationService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAvailableRooms(AvailabilitySearchDto roomAvailabilitySearchDto)
+        [HttpGet("availablerooms")]
+        public async Task<IActionResult> Get(string desiredDate, int startHours, int startMinutes, int endHours, int endMinutes)
         {
+            AvailabilitySearchDto availabilitySearchDto = new AvailabilitySearchDto
+            {
+                DesiredDate = Convert.ToDateTime(desiredDate),
+                StartHours = startHours,
+                StartMinutes = startMinutes,
+                EndHours = endHours,
+                EndMinutes = endMinutes
+            };
             // returns all available offices for selected location and time interval
-            var response = await _roomReservationService.GetAvailableRooms(roomAvailabilitySearchDto, 1);
+            var response = await _roomReservationService.GetAvailableRooms(availabilitySearchDto, 1);
             return CreateResultWithData(response);
         }
 
