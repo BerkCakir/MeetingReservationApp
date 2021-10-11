@@ -1,23 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Available Rooms For Desired Time Interval";
+    ViewData["Title"] = "Add";
 }
-@model MeetingReservationApp.Web.Models.RoomReservation.AvailabilitySearchDto
+@model MeetingReservationApp.Web.Models.RoomReservation.RoomReservationAddDto
 <div class="row">
     <div class="col-md-8 mt-4">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Searh For Available Rooms</h5>
-                <form asp-controller="RoomReservation" asp-action="Search" method="post" enctype="multipart/form-data">
+                <form asp-controller="RoomReservation" asp-action="Add" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly"></div>
                     <div class="mb-3">
                         <label class="form-label"></label>
-                        <input class="form-control" type="date" asp-for="DesiredDate" />
+                        <input readonly class="form-control" type="date" asp-for="DesiredDate" />
                         <span class="text-danger" asp-validation-for="DesiredDate"></span>
                     </div>
 
                     <div class="mb-3">
                         <label asp-for="StartHours" class="form-label"></label>
-                        <select asp-for="StartHours" class="form-control" asp-items="@ViewBag.HoursList">
+                        <select asp-for="StartHours" class="form-control" asp-items="@ViewBag.HoursList" readonly>
                             <option value="">Select Hours</option>
                         </select>
                         <span class="text-danger" asp-validation-for="StartHours"></span>
@@ -25,14 +25,14 @@
 
                     <div class="mb-3">
                         <label asp-for="StartMinutes" class="form-label"></label>
-                        <select asp-for="StartMinutes" class="form-control" asp-items="@ViewBag.MinutesList">
+                        <select asp-for="StartMinutes" class="form-control" asp-items="@ViewBag.MinutesList" readonly>
                             <option value="">Select Minutes</option>
                         </select>
                         <span class="text-danger" asp-validation-for="StartMinutes"></span>
-                    </div>                  
+                    </div>
                     <div class="mb-3">
                         <label asp-for="EndHours" class="form-label"></label>
-                        <select asp-for="EndHours" class="form-control" asp-items="@ViewBag.HoursList">
+                        <select asp-for="EndHours" class="form-control" asp-items="@ViewBag.HoursList" readonly>
                             <option value="">Select Hours</option>
                         </select>
                         <span class="text-danger" asp-validation-for="EndHours"></span>
@@ -40,13 +40,25 @@
 
                     <div class="mb-3">
                         <label asp-for="EndMinutes" class="form-label"></label>
-                        <select asp-for="EndMinutes" class="form-control" asp-items="@ViewBag.MinutesList">
+                        <select asp-for="EndMinutes" class="form-control" asp-items="@ViewBag.MinutesList" readonly>
                             <option value="">Select Minutes</option>
                         </select>
                         <span class="text-danger" asp-validation-for="EndMinutes"></span>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label"></label>
+                        <input class="form-control" type="text" asp-for="Description" maxlength="100" />
+                        <span class="text-danger" asp-validation-for="Description"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="AttendantCount" class="form-label"></label>
+                        <input class="form-control" type="text" asp-for="AttendantCount" />
+                        <span class="text-danger" asp-validation-for="AttendantCount"></span>
+                    </div>
+                    <div class="mb-3" hidden>
+                        <input class="form-control" type="text" asp-for="RoomId" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Reserve Room</button>
                 </form>
             </div>
         </div>

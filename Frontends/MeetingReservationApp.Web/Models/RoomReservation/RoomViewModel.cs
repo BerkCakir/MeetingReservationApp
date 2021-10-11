@@ -7,6 +7,7 @@ namespace MeetingReservationApp.Web.Models.RoomReservation
 {
     public class RoomViewModel
     {
+        public int Id{ get; set; }
         public string Name { get; set; }
         public int AttendanceCapacity { get; set; }
         public bool HasChairs { get; set; }
