@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\MeetingReservationApp.Entities\MeetingReservationApp.Entities.csproj" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>

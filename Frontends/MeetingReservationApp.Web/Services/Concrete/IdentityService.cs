@@ -1,9 +1,9 @@
 ﻿using IdentityModel.Client;
-using MeetingReservationApp.Entities.Dtos;
-using MeetingReservationApp.Shared.Utilities.Results.Abstract;
-using MeetingReservationApp.Shared.Utilities.Results.ComplexTypes;
-using MeetingReservationApp.Shared.Utilities.Results.Concrete;
+using MeetingReservationApp.Web.Dtos;
 using MeetingReservationApp.Web.Models;
+using MeetingReservationApp.Web.Results.Abstract;
+using MeetingReservationApp.Web.Results.ComplexTypes;
+using MeetingReservationApp.Web.Results.Concrete;
 using MeetingReservationApp.Web.Services.Abstract;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

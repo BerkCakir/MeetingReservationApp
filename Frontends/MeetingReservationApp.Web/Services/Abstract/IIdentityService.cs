@@ -1,6 +1,6 @@
 ﻿using IdentityModel.Client;
-using MeetingReservationApp.Shared.Utilities.Results.Abstract;
 using MeetingReservationApp.Web.Models;
+using MeetingReservationApp.Web.Results.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;

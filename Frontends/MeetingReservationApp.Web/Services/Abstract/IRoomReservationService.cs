@@ -1,5 +1,4 @@
-﻿using MeetingReservationApp.Entities.Concrete;
-using MeetingReservationApp.Entities.Dtos;
+﻿using MeetingReservationApp.Web.Models.RoomReservation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,6 @@ namespace MeetingReservationApp.Web.Services.Abstract
 {
     public interface IRoomReservationService
     {
-        Task<IList<Room>> Get();
+        Task<IList<RoomViewModel>> Get();
     }
 }

@@ -1,5 +1,5 @@
-﻿using MeetingReservationApp.Shared.Utilities.Results.ComplexTypes;
-using MeetingReservationApp.Web.Models;
+﻿using MeetingReservationApp.Web.Models;
+using MeetingReservationApp.Web.Results.ComplexTypes;
 using MeetingReservationApp.Web.Services.Abstract;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
