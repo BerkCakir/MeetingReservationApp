@@ -37,6 +37,10 @@ namespace MeetingReservationApp.Web
             {
                 o.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
             }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+            services.AddHttpClient<IRoomReservationService, RoomReservationService>(opt =>
+            {
+                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.RoomReservation.Path}");
+            }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
             // login cookie settings 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opts =>
