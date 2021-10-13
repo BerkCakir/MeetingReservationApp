@@ -40,7 +40,8 @@ namespace MeetingReservationApp.InventoryReservationApi
             services.AddControllers(c =>
             {
                 c.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));  //IdentityServer
-            });
+            }).AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            // newtonsoft added for loop handling error;
 
             services.AddAutoMapper(typeof(InventoryReservationProfile));
             services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));

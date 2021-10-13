@@ -18,10 +18,10 @@ namespace MeetingReservationApp.InventoryReservationApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAvailableInventories(AvailabilitySearchDto availabilitySearchDto)
+        public async Task<IActionResult> GetAll()
         {
             // returns all available offices for selected location and time interval
-            var response = await _inventoryReservationService.GetAvailableInventories(availabilitySearchDto, 1);
+            var response = await _inventoryReservationService.GetAll(1);
             return CreateResultWithData(response);
         }
 

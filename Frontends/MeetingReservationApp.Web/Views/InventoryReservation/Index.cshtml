@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model List<MeetingReservationApp.Web.Models.RoomReservation.RoomReservationViewModel>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Reservations</h5>
+                @if (Model != null)
+                {
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Location</th>
+                                <th>AttendantCount</th>
+                                <th>Reserved Inventories</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.Description</td>
+                                <td>@item.MeetingStartTime.ToShortDateString()</td>
+                                <td>@item.MeetingEndTime.ToShortDateString()</td>
+                                <td>@item.Room.Name</td>
+                                <td>@item.AttendantCount</td>
+                                <td>
+                                    <table class="table table-sm table-dark">
+                                        @foreach (var i in item.InventoryReservations)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @i.Inventory.Name
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                </td>
+                                <td>
+                                    <a asp-controller="InventoryReservation" asp-action="Add" asp-route-id="@item.RoomReservationGuid" class="btn btn-success btn-sm">Reserve</a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

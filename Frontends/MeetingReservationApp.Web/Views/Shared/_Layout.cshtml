@@ -19,7 +19,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="RoomReservation" asp-action="Index">Room Reservation</a>
+                            <a class="nav-link text-primary" asp-controller="RoomReservation" asp-action="Index">Room Reservation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" asp-controller="InventoryReservation" asp-action="Index">Inventory Reservation</a>
                         </li>
                     </ul>
                     @if (User.Identity.IsAuthenticated)

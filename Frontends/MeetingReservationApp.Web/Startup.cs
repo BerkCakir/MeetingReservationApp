@@ -41,7 +41,10 @@ namespace MeetingReservationApp.Web
             {
                 opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.RoomReservation.Path}");
             }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
-
+            services.AddHttpClient<IInventoryReservationService, InventoryReservationService>(opt =>
+            {
+                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.InventoryReservation.Path}");
+            }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
             // login cookie settings 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opts =>
             {    

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Add";
+}
+@model MeetingReservationApp.Web.Models.InventoryReservation.InventoryReservationDto
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Add Inventory Reservation</h5>
+
+                <form asp-controller="InventoryReservation" asp-action="Add" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <input type="hidden" asp-for="RoomReservationGuid" />
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label" asp-for="InventoryId"></label>
+                        <select asp-for="InventoryId" class="form-control" asp-items="@ViewBag.inventoryList">
+                            <option value="">Select inventory</option>
+                        </select>
+                        <span class="text-danger" asp-validation-for="InventoryId"></span>
+                    </div>                  
+
+                    <button type="submit" class="btn btn-primary">Reserve</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

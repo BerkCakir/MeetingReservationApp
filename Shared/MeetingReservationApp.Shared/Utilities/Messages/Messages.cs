@@ -18,6 +18,10 @@ namespace MeetingReservationApp.Shared.Utilities.Messages
             {
                 return "Room reservation added successfully";
             }
+            public static string NotFound()
+            {
+                return "No reservation exists for the location";
+            }
             public static string LocationHoursNotAvailable(string locationName)
             {
                 return $"{locationName} Office is closed at desired time";
