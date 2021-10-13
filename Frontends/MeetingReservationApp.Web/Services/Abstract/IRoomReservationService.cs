@@ -10,8 +10,9 @@ namespace MeetingReservationApp.Web.Services.Abstract
 {
     public interface IRoomReservationService
     {
-        Task<IList<RoomViewModel>> Get(AvailabilitySearchDto availabilitySearchDto);
+        Task<IList<RoomViewModel>> GetAvailability(AvailabilitySearchDto availabilitySearchDto);
 
         Task<Result> Add(RoomReservationAddDto roomReservationAddDto);
+        Task<IList<RoomReservationViewModel>> GetAll();
     }
 }
