@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace MeetingReservationApp.RoomReservationApi
@@ -35,12 +36,11 @@ namespace MeetingReservationApp.RoomReservationApi
                 c.Audience = "roomreservation";
                 c.RequireHttpsMetadata = false;
             });
-
             services.AddControllers(c =>
             {
                 c.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));  //IdentityServer
-            });
-
+            }).AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            // newtonsoft added for loop handling error
             services.AddAutoMapper(typeof(RoomReservationProfile));
             services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
             services.AddScoped<IRoomReservationService, RoomReservationManager>();
