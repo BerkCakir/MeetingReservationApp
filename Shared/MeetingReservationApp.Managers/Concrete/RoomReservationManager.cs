@@ -29,13 +29,22 @@ namespace MeetingReservationApp.Managers.Concrete
             DateTime desiredEndDate = roomAvailabilitySearchDto.DesiredDate.Date.AddHours(roomAvailabilitySearchDto.EndHours).AddMinutes(roomAvailabilitySearchDto.EndMinutes);
             #endregion
 
+            #region Check Time Interval is During Office Hours
+            var result = await CheckHoursForLocation(new RoomReservation {MeetingStartTime = desiredStartDate, MeetingEndTime = desiredEndDate },
+                                                    locationId);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return new DataResult<IList<Room>>(ResultStatus.Error, result.Message, null);
+            }
+            #endregion
+
             List<Room> availableRooms = new List<Room>();
             var offices = await _unitOfWork.Rooms.GetAllAsync(x => x.LocationId == locationId);
             if (offices.Count > 0)
             {
                 foreach (var office in offices)
                 {
-                    var result = await CheckHoursForOffice(desiredStartDate, desiredEndDate, office.Id);
+                    result = await CheckHoursForOffice(desiredStartDate, desiredEndDate, office.Id);
                     if (result.ResultStatus == ResultStatus.Success)
                     {
                         availableRooms.Add(office);
@@ -112,6 +121,26 @@ namespace MeetingReservationApp.Managers.Concrete
             return new Result(ResultStatus.Success, Messages.RoomReservation.Success());
         }
 
+        public async Task<IDataResult<IList<RoomReservation>>> GetAllAsync(int locationId)
+        {
+            var roomReservations = await _unitOfWork.RoomReservations.GetAllAsync(x => x.Room.LocationId == locationId, x=>x.Room, x=>x.InventoryReservations);
+           
+            if (roomReservations.Count > -1)
+            {
+                #region Include Inventories
+                foreach (var r in roomReservations)
+                {
+                    foreach (var i in r.InventoryReservations)
+                    {
+                        i.Inventory = await _unitOfWork.Inventories.GetAsync(x => x.Id == i.InventoryId);
+                    }
+                }
+                #endregion
+                return new DataResult<IList<RoomReservation>>(ResultStatus.Success, roomReservations);
+            }
+            return new DataResult<IList<RoomReservation>>(ResultStatus.Warning, Messages.RoomReservation.NotFound(),null);
+        }
+
 
         #region Private Bussiness Methods
         private async Task<IResult> CheckHoursForLocation(RoomReservation newReservation, int locationId)
@@ -155,6 +184,7 @@ namespace MeetingReservationApp.Managers.Concrete
             }
             return new Result(ResultStatus.Success);
         }
+
         #endregion
     }
 }

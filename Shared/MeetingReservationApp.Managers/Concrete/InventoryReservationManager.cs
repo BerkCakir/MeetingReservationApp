@@ -65,34 +65,13 @@ namespace MeetingReservationApp.Managers.Concrete
             #endregion
         }
 
-        public async Task<IDataResult<IList<Inventory>>> GetAvailableInventories(AvailabilitySearchDto availabilitySearchDto, int locationId)
+        public async Task<IDataResult<IList<Inventory>>> GetAll(int locationId)
         {
-            #region Create dates
-            DateTime desiredStartDate = availabilitySearchDto.DesiredDate.Date.AddHours(availabilitySearchDto.StartHours).AddMinutes(availabilitySearchDto.StartMinutes);
-            DateTime desiredEndDate = availabilitySearchDto.DesiredDate.Date.AddHours(availabilitySearchDto.EndHours).AddMinutes(availabilitySearchDto.EndMinutes);
-            #endregion
-
-            List<Inventory> availableInventories = new List<Inventory>();
-            var inventories = await _unitOfWork.Inventories.GetAllAsync(x => x.Room.LocationId == locationId, x => x.Room);
+            // return not fixed inventories related to the location
+            var inventories = await _unitOfWork.Inventories.GetAllAsync(x => x.Room.LocationId == locationId && !x.IsFixed, x => x.Room);
             if (inventories.Count > 0)
             {
-                foreach (var inventory in inventories)
-                {
-                    if(inventory.IsFixed)
-                    {
-                        continue; // fixed inventories can't get reserved
-                    }
-                    var result = await CheckHoursForInventory(desiredStartDate, desiredEndDate, inventory.Id);
-                    if (result.ResultStatus == ResultStatus.Success)
-                    {
-                        inventory.Room = null; // the owner room object of the inventory not returned
-                        availableInventories.Add(inventory);
-                    }
-                }
-                if (availableInventories.Count > 0)
-                {
-                    return new DataResult<IList<Inventory>>(ResultStatus.Success, availableInventories);
-                }
+                return new DataResult<IList<Inventory>>(ResultStatus.Success, inventories);
             }
             // not any office available
             return new DataResult<IList<Inventory>>(ResultStatus.Error, Messages.InventoryReservation.HoursNotAvailableForInventory(), null);

@@ -19,7 +19,7 @@ namespace MeetingReservationApp.RoomReservationApi.Controllers
         }
 
         [HttpGet("availablerooms")]
-        public async Task<IActionResult> Get(string desiredDate, int startHours, int startMinutes, int endHours, int endMinutes)
+        public async Task<IActionResult> GetAvailableRooms(string desiredDate, int startHours, int startMinutes, int endHours, int endMinutes)
         {
             AvailabilitySearchDto availabilitySearchDto = new AvailabilitySearchDto
             {
@@ -31,6 +31,13 @@ namespace MeetingReservationApp.RoomReservationApi.Controllers
             };
             // returns all available offices for selected location and time interval
             var response = await _roomReservationService.GetAvailableRooms(availabilitySearchDto, 1);
+            return CreateResultWithData(response);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {  
+            // returns all reservations related to location
+            var response = await _roomReservationService.GetAllAsync(1);
             return CreateResultWithData(response);
         }
 

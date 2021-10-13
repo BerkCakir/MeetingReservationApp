@@ -10,5 +10,6 @@ namespace MeetingReservationApp.Managers.Abstract
     {
         Task<IDataResult<IList<Room>>> GetAvailableRooms(AvailabilitySearchDto roomAvailabilitySearchDto, int locationId);
         Task<IResult> Add(RoomReservationAddDto roomReservationAddDto, int locationId);
+        Task<IDataResult<IList<RoomReservation>>> GetAllAsync(int locationId);
     }
 }

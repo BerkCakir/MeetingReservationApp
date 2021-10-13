@@ -45,7 +45,7 @@ namespace MeetingReservationApp.Web.Controllers
             TempData["EndHours"] = availabilitySearchDto.EndHours;
             TempData["EndMinutes"] = availabilitySearchDto.EndMinutes;
 
-            return View(await _roomReservationService.Get(availabilitySearchDto));
+            return View(await _roomReservationService.GetAvailability(availabilitySearchDto));
         }
         public IActionResult Add(string Id)
         {
