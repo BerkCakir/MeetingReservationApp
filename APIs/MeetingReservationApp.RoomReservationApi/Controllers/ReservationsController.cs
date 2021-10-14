@@ -3,6 +3,7 @@ using MeetingReservationApp.Managers.Abstract;
 using MeetingReservationApp.Shared.ControllerBases;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace MeetingReservationApp.RoomReservationApi.Controllers
@@ -23,7 +24,7 @@ namespace MeetingReservationApp.RoomReservationApi.Controllers
         {
             AvailabilitySearchDto availabilitySearchDto = new AvailabilitySearchDto
             {
-                DesiredDate = Convert.ToDateTime(desiredDate),
+                DesiredDate = DateTime.ParseExact(desiredDate, "dd-MM-yyyy", CultureInfo.InvariantCulture),
                 StartHours = startHours,
                 StartMinutes = startMinutes,
                 EndHours = endHours,

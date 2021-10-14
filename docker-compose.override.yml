@@ -1,0 +1,71 @@
+version: "3.8"
+services:
+  identitydb:
+    container_name: identitydb
+    restart: always
+    ports:
+      - "1433:1433"
+    volumes:
+      - identitydb_volume:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password12*
+  reservationdb:
+    container_name: reservationdb
+    restart: always
+    ports:
+      - "1444:1433"
+    volumes:
+      - reservationdb_volume:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password12*
+  identityserver.api:
+    container_name: identityserver.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:DefaultConnection=Server=identitydb,1433;Database=IdentityDb; User=sa; Password=Password12*"
+    ports:
+      - "5001:80"
+    depends_on:
+      - identitydb
+  roomreservation.api:
+    container_name: roomreservation.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityServerURL=http://identityserver.api      
+      - "ConnectionStrings:DefaultConnection=Server=reservationdb,1433;Database=ReservationDb; User=sa; Password=Password12*"
+    ports:
+      - "5002:80"
+    depends_on:
+      - reservationdb        
+  inventoryreservation.api:
+    container_name: inventoryreservation.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityServerURL=http://identityserver.api
+      - "ConnectionStrings:DefaultConnection=Server=reservationdb,1433;Database=ReservationDb; User=sa; Password=Password12*"
+    ports:
+      - "5003:80"
+    depends_on:
+      - reservationdb           
+  gateway.api:
+    container_name: gateway.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - IdentityServerURL=http://identityserver.api
+    ports:
+      - "5000:80"
+  aspnetcoremvc.web:
+    container_name: aspnetcoremvc.web
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ServiceApiSettings:IdentityBaseUri=http://identityserver.api
+      - ServiceApiSettings:GatewayBaseUri=http://gateway.api
+    ports:
+      - "5010:80"
+    depends_on:
+      - gateway.api
+      - identityserver.api
+      - roomreservation.api
+      - inventoryreservation.api

@@ -44,7 +44,7 @@ namespace MeetingReservationApp.InventoryReservationApi
             // newtonsoft added for loop handling error;
 
             services.AddAutoMapper(typeof(InventoryReservationProfile));
-            services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
+            services.LoadMyServices(connectionString: Configuration.GetConnectionString("DefaultConnection"));
             services.AddScoped<IInventoryReservationService, InventoryReservationManager>();
         }
 

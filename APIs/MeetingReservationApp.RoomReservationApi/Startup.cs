@@ -42,7 +42,7 @@ namespace MeetingReservationApp.RoomReservationApi
             }).AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             // newtonsoft added for loop handling error
             services.AddAutoMapper(typeof(RoomReservationProfile));
-            services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
+            services.LoadMyServices(connectionString: Configuration.GetConnectionString("DefaultConnection"));
             services.AddScoped<IRoomReservationService, RoomReservationManager>();
         }
 

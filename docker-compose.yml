@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  identitydb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+  reservationdb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+  roomreservation.api:
+    image: roomreservation_api_image
+    build:
+      context: .
+      dockerfile: APIs/MeetingReservationApp.RoomReservationApi/Dockerfile
+  inventoryreservation.api:
+    image: inventoryreservation_api_image
+    build:
+      context: .
+      dockerfile: APIs/MeetingReservationApp.InventoryReservationApi/Dockerfile      
+  identityserver.api:
+    image: identityserver_api_image
+    build:
+      context: .
+      dockerfile: IdentityServer/Dockerfile
+  gateway.api:
+    image: gateway_api_image
+    build:
+      context: .
+      dockerfile: Gateways/MeetingReservationApp.Gateway/Dockerfile
+  aspnetcoremvc.web:
+    image: aspnetcoremvc.web_image
+    build:
+      context: .
+      dockerfile: Frontends/MeetingReservationApp.Web/Dockerfile
+
+volumes:
+  identitydb_volume:
+  reservationdb_volume:
+    
