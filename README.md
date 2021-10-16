@@ -63,10 +63,12 @@ DB Diagram:
   
 ## User Stories
 
-Story 1
+User Story 1
 
 1.1) When home page loaded, hit RoomReservation link at the left top, because you’re not already logged in, it redirects you to login page
+
 1.2) Click login and use default cridentials at the login page ( if needed Steve@domain.com, Password12*) This user is located in Amsterdam, and this information is stored in ReservationIdentityServerDB) Can also be seen in profile page, reachable from at the right top scroll menu. So this user can only list rooms in Amsterdam.
+
 1.3) Click RoomReservation link, default values are set on the view but you are able to change
 Select today, set start hour to 7, other values are not important, hit search
 and get the below error:
@@ -97,4 +99,39 @@ and get the below error:
 
 ![image](https://user-images.githubusercontent.com/37144967/137600182-eb92c8b5-f179-4aa7-bcb1-8892f6412790.png)
 
+
+User Story 2
+
+2.1) Logout from the top left scroll menu
+
+2.2) Login with this credentials:
+Username : Sarah@domain.com
+Password: Abcabc12*
+Sarah is located in Berlin:
+
+![image](https://user-images.githubusercontent.com/37144967/137600249-3c7f330b-585d-4257-ad5c-2709790e659d.png)
+
+2.3) Hit room reservation button, then search a time interval which is not working time for Berlin(this data is located in Location table in ReservationDB)
+
+![image](https://user-images.githubusercontent.com/37144967/137600263-d09d6325-e391-472a-a7e3-db2a75c0183c.png)
+
+2.4) Change time to 12:00, 13:00 and search, you’ll see Rooms in Berlin Office: 
+
+![image](https://user-images.githubusercontent.com/37144967/137600296-35cc05ec-a02f-4807-9f70-71a8ac2f1d14.png)
+
+2.5) Reserve room B, and enter a proper attendant capacity and finish the reservation on the coming page. On InventoryReservation view, you’ll see the Room is reserved with its inventories:
+
+![image](https://user-images.githubusercontent.com/37144967/137600307-8ee4f0f3-aab1-497a-bb3a-14511e1a9337.png)
+
+2.6) Click RoomReservation at the top left again, select the same day and time interval ( 12:00- 13:00), hit search button, you won’t see Room B on the list because we already reserved this interval. (You can search any interval containing 12:00-13:00, ie 11:00-12:30 or 10:00-15:00, this searches also eliminates Room B)
+
+![image](https://user-images.githubusercontent.com/37144967/137600320-74ff916b-edd7-4e3a-8542-db6d34b67ce3.png)
+
+2.7) Click InventoryReservation on top left and hit Reserve, select Video Conference Equipment from dropdown and hit reserve. You already reserved a non-fixed inventory which belongs to Room A 
+
+![image](https://user-images.githubusercontent.com/37144967/137600328-bfb82ad4-a2d1-43cc-83eb-e3da1c11a263.png)
+
+2.8) Hit RoomReservation on top left once again, search for 11:00-12:30 and reserve Room A on the coming page. Because we’ve already reserved Room A’s only inventory on previous step, you’ll see Room A is reserved without an inventory:
+
+![image](https://user-images.githubusercontent.com/37144967/137600337-6407fd89-2a3e-4961-8b3e-f509d43a856d.png)
 
