@@ -31,6 +31,16 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
                  InventoryPurpose = Shared.Utilities.Enums.InventoryPurposeType.Watching,
                  CreatedDate = DateTime.Now,
                  ModifiedDate = DateTime.Now
+             }, 
+             new Inventory
+             {
+                 Id = 9,
+                 RoomId = 1,
+                 Name = "Marker Pen Set",
+                 IsFixed = false,
+                 InventoryPurpose = Shared.Utilities.Enums.InventoryPurposeType.Writing,
+                 CreatedDate = DateTime.Now,
+                 ModifiedDate = DateTime.Now
              },
              new Inventory
              {
@@ -39,6 +49,16 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
                  Name = "WhiteBoard",
                  IsFixed = true,
                  InventoryPurpose = Shared.Utilities.Enums.InventoryPurposeType.Drawing,
+                 CreatedDate = DateTime.Now,
+                 ModifiedDate = DateTime.Now
+             },
+             new Inventory
+             {
+                 Id = 10,
+                 RoomId = 2,
+                 Name = "Video Conference Equipment",
+                 IsFixed = false,
+                 InventoryPurpose = Shared.Utilities.Enums.InventoryPurposeType.VideoConference,
                  CreatedDate = DateTime.Now,
                  ModifiedDate = DateTime.Now
              },
@@ -62,12 +82,13 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
                  CreatedDate = DateTime.Now,
                  ModifiedDate = DateTime.Now
              },
+
              new Inventory
              {
                  Id = 5,
                  RoomId = 4,
                  Name = "Video Conference Equipment",
-                 IsFixed = true,
+                 IsFixed = false,
                  InventoryPurpose = Shared.Utilities.Enums.InventoryPurposeType.VideoConference,
                  CreatedDate = DateTime.Now,
                  ModifiedDate = DateTime.Now
@@ -86,9 +107,9 @@ namespace MeetingReservationApp.Data.Concrete.EntityFramework.Mappings
              {
                  Id = 7,
                  RoomId = 5,
-                 Name = "Television",
+                 Name = "WhiteBoard",
                  IsFixed = true,
-                 InventoryPurpose = Shared.Utilities.Enums.InventoryPurposeType.VideoConference,
+                 InventoryPurpose = Shared.Utilities.Enums.InventoryPurposeType.Drawing,
                  CreatedDate = DateTime.Now,
                  ModifiedDate = DateTime.Now
              },
