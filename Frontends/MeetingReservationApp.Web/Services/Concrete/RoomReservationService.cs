@@ -19,14 +19,15 @@ namespace MeetingReservationApp.Web.Services.Concrete
             _httpClient = httpClient;
         }
 
-        public async Task<IList<RoomViewModel>> GetAvailability(AvailabilitySearchDto availabilitySearchDto)
+        public async Task<IList<RoomViewModel>> GetAvailability(AvailabilitySearchDto availabilitySearchDto, int locationId)
         {
             string desiredDate = availabilitySearchDto.DesiredDate.ToString("dd-MM-yyyy");
             int startHours = availabilitySearchDto.StartHours;
             int startMinutes = availabilitySearchDto.StartMinutes;
             int endHours = availabilitySearchDto.EndHours;
             int endMinutes = availabilitySearchDto.EndMinutes;
-            var response = await _httpClient.GetAsync($"reservations/availablerooms?desiredDate={desiredDate}&startHours={startHours}&startMinutes={startMinutes}&endHours={endHours}&endMinutes={endMinutes}");
+            var response = await _httpClient.GetAsync($"reservations/availablerooms?desiredDate={desiredDate}&startHours={startHours}" +
+                                                      $"&startMinutes={startMinutes}&endHours={endHours}&endMinutes={endMinutes}&locationId={locationId}");
 
             if (!response.IsSuccessStatusCode)
             {
@@ -45,9 +46,9 @@ namespace MeetingReservationApp.Web.Services.Concrete
             return result;
         }
 
-        public async Task<IList<RoomReservationViewModel>> GetAll()
+        public async Task<IList<RoomReservationViewModel>> GetAll(int locationId)
         {
-            var response = await _httpClient.GetAsync("reservations");
+            var response = await _httpClient.GetAsync($"reservations/{locationId}");
 
             if (!response.IsSuccessStatusCode)
             {

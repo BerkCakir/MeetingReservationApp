@@ -14,19 +14,21 @@ namespace MeetingReservationApp.Web.Controllers
     public class RoomReservationController : Controller
     {
         private readonly IRoomReservationService _roomReservationService;
-
-        public RoomReservationController(IRoomReservationService roomReservationService)
+        private readonly IUserService _userService;
+        public RoomReservationController(IRoomReservationService roomReservationService, IUserService userService)
         {
             _roomReservationService = roomReservationService;
+            _userService = userService;
         }
+
         public IActionResult Index()
         {
             List<SelectListItem> listItems = new List<SelectListItem>();
-            for(int i=0; i<25;i++)
+            for (int i = 0; i < 25; i++)
             {
-                listItems.Add(new SelectListItem { Text = i.ToString().PadLeft(2,'0'), Value = i.ToString() });
+                listItems.Add(new SelectListItem { Text = i.ToString().PadLeft(2, '0'), Value = i.ToString() });
             }
-            ViewBag.HoursList = listItems; 
+            ViewBag.HoursList = listItems;
             listItems = new List<SelectListItem>();
             for (int i = 0; i < 60; i++)
             {
@@ -45,7 +47,7 @@ namespace MeetingReservationApp.Web.Controllers
             TempData["EndHours"] = availabilitySearchDto.EndHours;
             TempData["EndMinutes"] = availabilitySearchDto.EndMinutes;
 
-            return View(await _roomReservationService.GetAvailability(availabilitySearchDto));
+            return View(await _roomReservationService.GetAvailability(availabilitySearchDto, _userService.GetUser().Result.Location));
         }
         public IActionResult Add(string Id)
         {
@@ -78,6 +80,7 @@ namespace MeetingReservationApp.Web.Controllers
             {
                 return View();
             }
+            roomReservationAddDto.LocationId = _userService.GetUser().Result.Location;
             await _roomReservationService.Add(roomReservationAddDto);
 
             return RedirectToAction(nameof(Index));

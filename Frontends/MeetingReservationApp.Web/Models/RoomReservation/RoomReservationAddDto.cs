@@ -15,5 +15,7 @@ namespace MeetingReservationApp.Web.Models.RoomReservation
         public int EndHours { get; set; }
         public int EndMinutes { get; set; }
         public int AttendantCount { get; set; }
+        public int LocationId { get; set; }
+
     }
 }

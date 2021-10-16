@@ -14,5 +14,6 @@ namespace MeetingReservationApp.Entities.Dtos
         public int EndHours { get; set; }
         public int EndMinutes { get; set; }
         public int AttendantCount { get; set; }
+        public int LocationId { get; set; }
     }
 }

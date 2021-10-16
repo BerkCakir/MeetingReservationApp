@@ -29,9 +29,9 @@ namespace MeetingReservationApp.Web.Services.Concrete
             return result;
         }
 
-        public async Task<IList<InventoryViewModel>> GetAll()
+        public async Task<IList<InventoryViewModel>> GetAll(int locationId)
         {
-            var response = await _httpClient.GetAsync("reservations");
+            var response = await _httpClient.GetAsync($"reservations/{locationId}");
 
             if (!response.IsSuccessStatusCode)
             {

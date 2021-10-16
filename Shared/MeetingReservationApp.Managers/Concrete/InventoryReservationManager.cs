@@ -23,7 +23,7 @@ namespace MeetingReservationApp.Managers.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IResult> Add(InventoryReservationAddDto inventoryReservationAddDto, int locationId)
+        public async Task<IResult> Add(InventoryReservationAddDto inventoryReservationAddDto)
         {
             var newReservation = _mapper.Map<InventoryReservation>(inventoryReservationAddDto);
 

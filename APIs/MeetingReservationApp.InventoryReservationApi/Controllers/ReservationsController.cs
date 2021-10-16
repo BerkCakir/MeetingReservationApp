@@ -17,18 +17,18 @@ namespace MeetingReservationApp.InventoryReservationApi.Controllers
             _inventoryReservationService = inventoryReservationService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("{locationId}")]
+        public async Task<IActionResult> GetAll(int locationId)
         {
             // returns all available offices for selected location and time interval
-            var response = await _inventoryReservationService.GetAll(1);
+            var response = await _inventoryReservationService.GetAll(locationId);
             return CreateResultWithData(response);
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(InventoryReservationAddDto inventoryReservationAddDto)
         {
-            var response = await _inventoryReservationService.Add(inventoryReservationAddDto, 1);
+            var response = await _inventoryReservationService.Add(inventoryReservationAddDto);
             return CreateResult(response);
         }
     }

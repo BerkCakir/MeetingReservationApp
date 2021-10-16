@@ -20,7 +20,7 @@ namespace MeetingReservationApp.RoomReservationApi.Controllers
         }
 
         [HttpGet("availablerooms")]
-        public async Task<IActionResult> GetAvailableRooms(string desiredDate, int startHours, int startMinutes, int endHours, int endMinutes)
+        public async Task<IActionResult> GetAvailableRooms(string desiredDate, int startHours, int startMinutes, int endHours, int endMinutes, int locationId)
         {
             DateTime foundDate;
             if (!DateTime.TryParseExact(desiredDate, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out foundDate) ||
@@ -29,21 +29,21 @@ namespace MeetingReservationApp.RoomReservationApi.Controllers
                 return BadRequest();
             }
             // returns all available offices for selected location and time interval
-            var response = await _roomReservationService.GetAvailableRooms(desiredDate,  startHours,  startMinutes,  endHours,  endMinutes, 1);
+            var response = await _roomReservationService.GetAvailableRooms(desiredDate,  startHours,  startMinutes,  endHours,  endMinutes, locationId);
             return CreateResultWithData(response);
         }
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet("{locationId}")]
+        public async Task<IActionResult> Get(int locationId)
         {  
             // returns all reservations related to location
-            var response = await _roomReservationService.GetAllAsync(1);
+            var response = await _roomReservationService.GetAllAsync(locationId);
             return CreateResultWithData(response);
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(RoomReservationAddDto roomReservationAddDto)
         {
-            var response = await _roomReservationService.Add(roomReservationAddDto, 1);
+            var response = await _roomReservationService.Add(roomReservationAddDto);
             return CreateResult(response);
         }
     }

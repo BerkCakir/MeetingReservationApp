@@ -11,7 +11,7 @@ namespace MeetingReservationApp.Web.Services.Abstract
 {
     public interface IInventoryReservationService
     {
-        Task<IList<InventoryViewModel>> GetAll();
+        Task<IList<InventoryViewModel>> GetAll(int locationId);
         Task<Result> Add(InventoryReservationDto inventoryReservationDto);
     }
 }

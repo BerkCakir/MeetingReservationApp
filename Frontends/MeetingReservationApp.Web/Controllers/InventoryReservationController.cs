@@ -16,21 +16,23 @@ namespace MeetingReservationApp.Web.Controllers
     {
         private readonly IInventoryReservationService _inventoryReservationService;
         private readonly IRoomReservationService _roomReservationService;
+        private readonly IUserService _userService;
 
-        public InventoryReservationController(IInventoryReservationService inventoryReservationService, IRoomReservationService roomReservationService)
+        public InventoryReservationController(IInventoryReservationService inventoryReservationService, IRoomReservationService roomReservationService, IUserService userService)
         {
             _inventoryReservationService = inventoryReservationService;
             _roomReservationService = roomReservationService;
+            _userService = userService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var result = await _roomReservationService.GetAll();
+            var result = await _roomReservationService.GetAll(_userService.GetUser().Result.Location);
             return View(result);
         }
         public async Task<IActionResult> Add(string Id)
         {
-            var inv = await _inventoryReservationService.GetAll();
+            var inv = await _inventoryReservationService.GetAll(_userService.GetUser().Result.Location);
             ViewBag.inventoryList = new SelectList(inv, "Id", "Name");
             InventoryReservationDto inventoryReservationDto = new InventoryReservationDto { RoomReservationGuid = Guid.Parse(Id)};
             return View(inventoryReservationDto);
@@ -38,7 +40,7 @@ namespace MeetingReservationApp.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(InventoryReservationDto inventoryReservationDto)
         {
-            var inv = await _inventoryReservationService.GetAll();
+            var inv = await _inventoryReservationService.GetAll(_userService.GetUser().Result.Location);
             ViewBag.inventoryList = new SelectList(inv, "Id", "Name");
             if (!ModelState.IsValid)
             {

@@ -64,12 +64,12 @@ namespace MeetingReservationApp.Managers.Concrete
             return new DataResult<List<Room>>(ResultStatus.Error, Messages.RoomReservation.HoursNotAvailableForOffice(), null);
 
         }
-        public async Task<IResult> Add(RoomReservationAddDto roomReservationAddDto, int locationId)
+        public async Task<IResult> Add(RoomReservationAddDto roomReservationAddDto)
         {
             var newReservation = _mapper.Map<RoomReservation>(roomReservationAddDto);
 
             #region Check Time Interval is During Office Hours
-            var result = await CheckHoursForLocation(newReservation, locationId);
+            var result = await CheckHoursForLocation(newReservation, roomReservationAddDto.LocationId);
             if (result.ResultStatus != ResultStatus.Success)
             {
                 return result;

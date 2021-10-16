@@ -9,6 +9,6 @@ namespace MeetingReservationApp.Managers.Abstract
     public interface IInventoryReservationService
     {
         Task<IDataResult<IList<Inventory>>> GetAll(int locationId);
-        Task<IResult> Add(InventoryReservationAddDto inventoryReservationAddDto, int locationId);
+        Task<IResult> Add(InventoryReservationAddDto inventoryReservationAddDto);
     }
 }
