@@ -40,7 +40,7 @@ DB Diagram:
 - Login creadentials are already set in login page
 - After login - the top right menu can be used for displaying user profile and location
 - RoomReservation and InventroyReservation links can be used after logging in, these links use RoomReservationAPI and InventoryReservationAPI
-- Your Docker app should be like: 
+- The Docker container should be like: 
 
 ![image](https://user-images.githubusercontent.com/37144967/137601839-3e2e4bb7-277d-4195-a04d-0d1fa1bacfde.png)
 
