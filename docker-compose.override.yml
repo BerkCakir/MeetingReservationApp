@@ -22,6 +22,7 @@ services:
       - SA_PASSWORD=Password12*
   identityserver.api:
     container_name: identityserver.api
+    restart: on-failure    
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:DefaultConnection=Server=identitydb,1433;Database=IdentityDb; User=sa; Password=Password12*"
@@ -31,6 +32,7 @@ services:
       - identitydb
   roomreservation.api:
     container_name: roomreservation.api
+    restart: on-failure    
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - IdentityServerURL=http://identityserver.api      
@@ -41,6 +43,7 @@ services:
       - reservationdb        
   inventoryreservation.api:
     container_name: inventoryreservation.api
+    restart: on-failure    
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - IdentityServerURL=http://identityserver.api
