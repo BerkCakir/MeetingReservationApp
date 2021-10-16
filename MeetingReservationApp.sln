@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingReservationApp.Web",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{B0C49006-3786-4864-A633-F058FF1DAFE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.RoomReservationAPI.Test", "UnitTests\MeetingReservationApp.RoomReservationAPI.Test\MeetingReservationApp.RoomReservationAPI.Test.csproj", "{901829F2-BD4F-42F4-9810-7B9F298CD2E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingReservationApp.RoomReservationAPI.Test", "UnitTests\MeetingReservationApp.RoomReservationAPI.Test\MeetingReservationApp.RoomReservationAPI.Test.csproj", "{901829F2-BD4F-42F4-9810-7B9F298CD2E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +95,7 @@ Global
 		{3661890B-F4FB-44D9-A5B5-3B00F7CE4D97} = {A3096B0B-95D9-4560-8D34-AF6AC9A8D03D}
 		{F3C874D0-1BC7-4C14-9028-C156811658A2} = {2C0D7F6C-9650-45EA-8817-ECF224D08F4C}
 		{CA2FF89C-F054-42CB-9181-A91D5E45C997} = {16BE0D97-4B4D-47CA-A984-C42360D9EA41}
+		{901829F2-BD4F-42F4-9810-7B9F298CD2E2} = {B0C49006-3786-4864-A633-F058FF1DAFE6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {234717FC-13BD-4EC7-B7C8-1F62311E3D50}
