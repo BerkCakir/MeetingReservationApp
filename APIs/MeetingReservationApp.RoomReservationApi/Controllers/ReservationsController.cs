@@ -22,16 +22,14 @@ namespace MeetingReservationApp.RoomReservationApi.Controllers
         [HttpGet("availablerooms")]
         public async Task<IActionResult> GetAvailableRooms(string desiredDate, int startHours, int startMinutes, int endHours, int endMinutes)
         {
-            AvailabilitySearchDto availabilitySearchDto = new AvailabilitySearchDto
+            DateTime foundDate;
+            if (!DateTime.TryParseExact(desiredDate, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out foundDate) ||
+                (startHours < 0 || endHours < 0 || startMinutes < 0 || endMinutes < 0))
             {
-                DesiredDate = DateTime.ParseExact(desiredDate, "dd-MM-yyyy", CultureInfo.InvariantCulture),
-                StartHours = startHours,
-                StartMinutes = startMinutes,
-                EndHours = endHours,
-                EndMinutes = endMinutes
-            };
+                return BadRequest();
+            }
             // returns all available offices for selected location and time interval
-            var response = await _roomReservationService.GetAvailableRooms(availabilitySearchDto, 1);
+            var response = await _roomReservationService.GetAvailableRooms(desiredDate,  startHours,  startMinutes,  endHours,  endMinutes, 1);
             return CreateResultWithData(response);
         }
         [HttpGet]

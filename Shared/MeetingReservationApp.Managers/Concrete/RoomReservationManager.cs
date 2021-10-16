@@ -9,6 +9,7 @@ using MeetingReservationApp.Shared.Utilities.Results.ComplexTypes;
 using MeetingReservationApp.Shared.Utilities.Results.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace MeetingReservationApp.Managers.Concrete
@@ -17,20 +18,24 @@ namespace MeetingReservationApp.Managers.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+
         public RoomReservationManager(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IDataResult<IList<Room>>> GetAvailableRooms(AvailabilitySearchDto roomAvailabilitySearchDto, int locationId)
+        public async Task<IDataResult<IList<Room>>> GetAvailableRooms(string desiredDate, int startHours, int startMinutes, int endHours, int endMinutes, int locationId)
         {
+
+            var ddate = DateTime.ParseExact(desiredDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+
             #region Create dates
-            DateTime desiredStartDate = roomAvailabilitySearchDto.DesiredDate.Date.AddHours(roomAvailabilitySearchDto.StartHours).AddMinutes(roomAvailabilitySearchDto.StartMinutes);
-            DateTime desiredEndDate = roomAvailabilitySearchDto.DesiredDate.Date.AddHours(roomAvailabilitySearchDto.EndHours).AddMinutes(roomAvailabilitySearchDto.EndMinutes);
+            DateTime desiredStartDate = ddate.Date.AddHours(startHours).AddMinutes(startMinutes);
+            DateTime desiredEndDate = ddate.Date.AddHours(endHours).AddMinutes(endMinutes);
             #endregion
 
             #region Check Time Interval is During Office Hours
-            var result = await CheckHoursForLocation(new RoomReservation {MeetingStartTime = desiredStartDate, MeetingEndTime = desiredEndDate },
+            var result = await CheckHoursForLocation(new RoomReservation { MeetingStartTime = desiredStartDate, MeetingEndTime = desiredEndDate },
                                                     locationId);
             if (result.ResultStatus != ResultStatus.Success)
             {
@@ -52,11 +57,11 @@ namespace MeetingReservationApp.Managers.Concrete
                 }
                 if (availableRooms.Count > 0)
                 {
-                    return new DataResult<IList<Room>>(ResultStatus.Success, availableRooms);
+                    return new DataResult<List<Room>>(ResultStatus.Success, availableRooms);
                 }
             }
             // not any office available
-            return new DataResult<IList<Room>>(ResultStatus.Error, Messages.RoomReservation.HoursNotAvailableForOffice(), null);
+            return new DataResult<List<Room>>(ResultStatus.Error, Messages.RoomReservation.HoursNotAvailableForOffice(), null);
 
         }
         public async Task<IResult> Add(RoomReservationAddDto roomReservationAddDto, int locationId)
