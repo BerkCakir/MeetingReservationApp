@@ -33,23 +33,23 @@ DB Diagram:
 
 ## How to Run
 
-- Download project and open the project folder in VS Code
-- Run docker-compose up command in terminal
+- Download project and open the project folder by VS Code
+- Run docker-compose up command on terminal
 - Wait for the image downloads, it'll take a while
 - Type http://localhost:5010/ to your browser (Preferably Google Chrome) 
 - Login creadentials are already set in login page
 - After login - the top right menu can be used for displaying user profile and location
-- RoomReservation and InventroyReservation links can be used after logging in
+- RoomReservation and InventroyReservation links can be used after logging in, these links use RoomReservationAPI and InventoryReservationAPI
 
 ## Features to be developed
 
 - Unit tests are not enough, much more unit test should be added
 - Data annotations are used for validation on UI, I prefer to use FluentValidation library. Data annotations are not suitable for single responsibility principle 
 - Indexes should be created on DB Tables, especially when searching date intervals they are important
-- UI features are not user friendly, they are just created to show APIs functionalities
+- UI features are not user friendly, they are just created to show API functionalities
 - UI controller codes should be refactored
-- API documentation should be added (I can add it if requested) 
-- I forgot to add user id to roomreservations table, it should be added because a reservation should be owned by a personnel
+- API documentation should be added 
+- I forgot to add userid to roomreservations table, it should be added because a reservation should be owned by a personnel
 - I didn't add controls, like "start time should be greater then end time" or "you are trying to create reservation for past". This kind of controls should be added
 
 
@@ -111,8 +111,8 @@ Sarah is located in Berlin:
 
 ![image](https://user-images.githubusercontent.com/37144967/137600249-3c7f330b-585d-4257-ad5c-2709790e659d.png)
 
-2.3) Hit room reservation button, then search a time interval which is not working time for Berlin(this data is located in Location table in ReservationDB)
-
+2.3) Hit room reservation button, then search a time interval which is not working time for Berlin(this data is located in Location table in ReservationDB) (Below image shows a valid hour for location, because hour-minute scroll to default values after postback, this is a minor bug)
+ 
 ![image](https://user-images.githubusercontent.com/37144967/137600263-d09d6325-e391-472a-a7e3-db2a75c0183c.png)
 
 2.4) Change time to 12:00, 13:00 and search, you’ll see Rooms in Berlin Office: 
