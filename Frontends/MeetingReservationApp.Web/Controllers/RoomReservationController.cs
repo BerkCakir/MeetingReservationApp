@@ -53,6 +53,7 @@ namespace MeetingReservationApp.Web.Controllers
             if (result.ResultStatus != ResultStatus.Success)
             {
                 TempData["errorMessage"] = result.Message;
+                return RedirectToAction(nameof(Index));
             }
             return View(result.Data);
         }
@@ -107,7 +108,7 @@ namespace MeetingReservationApp.Web.Controllers
                 TempData["errorMessage"] = result.Message;
                 return View(roomReservationAddDto);
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), "InventoryReservation");
         }
     }
 }

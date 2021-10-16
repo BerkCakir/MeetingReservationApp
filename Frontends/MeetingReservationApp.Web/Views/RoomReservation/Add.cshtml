@@ -17,32 +17,36 @@
 
                     <div class="mb-3">
                         <label asp-for="StartHours" class="form-label"></label>
-                        <select asp-for="StartHours" class="form-control" asp-items="@ViewBag.HoursList" readonly>
+                        <select asp-for="StartHours" class="form-control" asp-items="@ViewBag.HoursList" disabled>
                             <option value="">Select Hours</option>
                         </select>
+                        <input readonly class="form-control" hidden asp-for="StartHours" />
                         <span class="text-danger" asp-validation-for="StartHours"></span>
                     </div>
 
                     <div class="mb-3">
                         <label asp-for="StartMinutes" class="form-label"></label>
-                        <select asp-for="StartMinutes" class="form-control" asp-items="@ViewBag.MinutesList" readonly>
+                        <select asp-for="StartMinutes" class="form-control" asp-items="@ViewBag.MinutesList" disabled>
                             <option value="">Select Minutes</option>
                         </select>
+                        <input readonly class="form-control" hidden asp-for="StartMinutes" />
                         <span class="text-danger" asp-validation-for="StartMinutes"></span>
                     </div>
                     <div class="mb-3">
                         <label asp-for="EndHours" class="form-label"></label>
-                        <select asp-for="EndHours" class="form-control" asp-items="@ViewBag.HoursList" readonly>
+                        <select asp-for="EndHours" class="form-control" asp-items="@ViewBag.HoursList" disabled>
                             <option value="">Select Hours</option>
                         </select>
+                        <input readonly class="form-control" hidden asp-for="EndHours" />
                         <span class="text-danger" asp-validation-for="EndHours"></span>
                     </div>
 
                     <div class="mb-3">
                         <label asp-for="EndMinutes" class="form-label"></label>
-                        <select asp-for="EndMinutes" class="form-control" asp-items="@ViewBag.MinutesList" readonly>
+                        <select asp-for="EndMinutes" class="form-control" asp-items="@ViewBag.MinutesList" disabled>
                             <option value="">Select Minutes</option>
                         </select>
+                        <input readonly class="form-control" hidden asp-for="EndMinutes" />
                         <span class="text-danger" asp-validation-for="EndMinutes"></span>
                     </div>
                     <div class="mb-3">
