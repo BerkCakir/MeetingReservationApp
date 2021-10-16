@@ -29,7 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingReservationApp.Inven
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontends", "Frontends", "{16BE0D97-4B4D-47CA-A984-C42360D9EA41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.Web", "Frontends\MeetingReservationApp.Web\MeetingReservationApp.Web.csproj", "{CA2FF89C-F054-42CB-9181-A91D5E45C997}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingReservationApp.Web", "Frontends\MeetingReservationApp.Web\MeetingReservationApp.Web.csproj", "{CA2FF89C-F054-42CB-9181-A91D5E45C997}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{B0C49006-3786-4864-A633-F058FF1DAFE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingReservationApp.RoomReservationAPI.Test", "UnitTests\MeetingReservationApp.RoomReservationAPI.Test\MeetingReservationApp.RoomReservationAPI.Test.csproj", "{901829F2-BD4F-42F4-9810-7B9F298CD2E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +77,10 @@ Global
 		{CA2FF89C-F054-42CB-9181-A91D5E45C997}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA2FF89C-F054-42CB-9181-A91D5E45C997}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA2FF89C-F054-42CB-9181-A91D5E45C997}.Release|Any CPU.Build.0 = Release|Any CPU
+		{901829F2-BD4F-42F4-9810-7B9F298CD2E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{901829F2-BD4F-42F4-9810-7B9F298CD2E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{901829F2-BD4F-42F4-9810-7B9F298CD2E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{901829F2-BD4F-42F4-9810-7B9F298CD2E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

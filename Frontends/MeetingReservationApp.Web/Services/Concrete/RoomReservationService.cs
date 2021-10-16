@@ -19,7 +19,7 @@ namespace MeetingReservationApp.Web.Services.Concrete
             _httpClient = httpClient;
         }
 
-        public async Task<IList<RoomViewModel>> GetAvailability(AvailabilitySearchDto availabilitySearchDto, int locationId)
+        public async Task<DataResult<IList<RoomViewModel>>> GetAvailability(AvailabilitySearchDto availabilitySearchDto, int locationId)
         {
             string desiredDate = availabilitySearchDto.DesiredDate.ToString("dd-MM-yyyy");
             int startHours = availabilitySearchDto.StartHours;
@@ -29,13 +29,9 @@ namespace MeetingReservationApp.Web.Services.Concrete
             var response = await _httpClient.GetAsync($"reservations/availablerooms?desiredDate={desiredDate}&startHours={startHours}" +
                                                       $"&startMinutes={startMinutes}&endHours={endHours}&endMinutes={endMinutes}&locationId={locationId}");
 
-            if (!response.IsSuccessStatusCode)
-            {
-                return null;
-            }
 
-            var responseSuccess = await response.Content.ReadFromJsonAsync<DataResult<List<RoomViewModel>>>();
-            return responseSuccess.Data;
+            var responseSuccess = await response.Content.ReadFromJsonAsync<DataResult<IList<RoomViewModel>>>();
+            return responseSuccess;
         }
         public async Task<Result> Add(RoomReservationAddDto roomReservationAddDto)
         {

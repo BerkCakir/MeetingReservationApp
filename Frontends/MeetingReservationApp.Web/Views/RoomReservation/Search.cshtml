@@ -28,22 +28,22 @@
                                     <td>@item.Name</td>
                                     <td>@item.AttendanceCapacity</td>
                                     <td>@item.HasChairs</td>
-                                    <td>@item.LocationId</td>
+                                    <td>@item.Location.Name</td>
                                     <td>
-                                            <a asp-controller="RoomReservation" asp-action="Add" asp-route-id="@item.Id" class="btn btn-success btn-sm">Reserve</a>
-                                        </td>
+                                        <a asp-controller="RoomReservation" asp-action="Add" asp-route-id="@item.Id" class="btn btn-success btn-sm">Reserve</a>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
                     </table>
                 }
-                else
-                {
-                    <div class="alert alert-info">
-
-                    </div>
-                }
             </div>
         </div>
     </div>
 </div>
+@if (TempData["errorMessage"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        @TempData["errorMessage"] <br />
+    </div>
+}

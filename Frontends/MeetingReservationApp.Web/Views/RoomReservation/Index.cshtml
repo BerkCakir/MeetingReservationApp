@@ -6,7 +6,7 @@
     <div class="col-md-8 mt-4">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Searh For Available Rooms</h5>
+                <h5 class="card-title">Search For Available Rooms</h5>
                 <form asp-controller="RoomReservation" asp-action="Search" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly"></div>
                     <div class="mb-3">
@@ -29,7 +29,7 @@
                             <option value="">Select Minutes</option>
                         </select>
                         <span class="text-danger" asp-validation-for="StartMinutes"></span>
-                    </div>                  
+                    </div>
                     <div class="mb-3">
                         <label asp-for="EndHours" class="form-label"></label>
                         <select asp-for="EndHours" class="form-control" asp-items="@ViewBag.HoursList">
@@ -52,3 +52,9 @@
         </div>
     </div>
 </div>
+@if (TempData["errorMessage"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        @TempData["errorMessage"] <br />
+    </div>
+}

@@ -1,5 +1,6 @@
 ﻿using MeetingReservationApp.Web.Models.InventoryReservation;
 using MeetingReservationApp.Web.Models.RoomReservation;
+using MeetingReservationApp.Web.Results.ComplexTypes;
 using MeetingReservationApp.Web.Services.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,7 @@ namespace MeetingReservationApp.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var result = await _roomReservationService.GetAll(_userService.GetUser().Result.Location);
+
             return View(result);
         }
         public async Task<IActionResult> Add(string Id)
@@ -44,9 +46,14 @@ namespace MeetingReservationApp.Web.Controllers
             ViewBag.inventoryList = new SelectList(inv, "Id", "Name");
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(inventoryReservationDto);
             }
-            await _inventoryReservationService.Add(inventoryReservationDto);
+            var result= await _inventoryReservationService.Add(inventoryReservationDto);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                TempData["errorMessage"] = result.Message;
+                return View(inventoryReservationDto);
+            }
             return RedirectToAction(nameof(Index));
         }
     }

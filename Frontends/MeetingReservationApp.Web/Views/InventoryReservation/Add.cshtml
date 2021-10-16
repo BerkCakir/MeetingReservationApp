@@ -19,7 +19,7 @@
                             <option value="">Select inventory</option>
                         </select>
                         <span class="text-danger" asp-validation-for="InventoryId"></span>
-                    </div>                  
+                    </div>
 
                     <button type="submit" class="btn btn-primary">Reserve</button>
                 </form>
@@ -27,4 +27,9 @@
         </div>
     </div>
 </div>
-
+@if (TempData["errorMessage"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        @TempData["errorMessage"] <br />
+    </div>
+}

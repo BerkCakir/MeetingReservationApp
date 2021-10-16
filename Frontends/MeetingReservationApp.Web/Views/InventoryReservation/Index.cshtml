@@ -26,40 +26,39 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>@item.Description</td>
-                                <td>@item.MeetingStartTime.ToShortDateString()</td>
-                                <td>@item.MeetingEndTime.ToShortDateString()</td>
-                                <td>@item.Room.Name</td>
-                                <td>@item.AttendantCount</td>
-                                <td>
-                                    <table class="table table-sm table-dark">
-                                        @foreach (var i in item.InventoryReservations)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @i.Inventory.Name
-                                                </td>
-                                            </tr>
-                                        }
-                                    </table>
-                                </td>
-                                <td>
-                                    <a asp-controller="InventoryReservation" asp-action="Add" asp-route-id="@item.RoomReservationGuid" class="btn btn-success btn-sm">Reserve</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>@item.Description</td>
+                                    <td>@item.MeetingStartTime.ToString("dd-MM-yyyy HH:mm")</td>
+                                    <td>@item.MeetingEndTime.ToString("dd-MM-yyyy HH:mm")</td>
+                                    <td>@item.Room.Name</td>
+                                    <td>@item.AttendantCount</td>
+                                    <td>
+                                        <table class="table table-sm table-dark">
+                                            @foreach (var i in item.InventoryReservations)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @i.Inventory.Name
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="InventoryReservation" asp-action="Add" asp-route-id="@item.RoomReservationGuid" class="btn btn-success btn-sm">Reserve</a>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
-                }
-                else
-                {
-                    <div class="alert alert-info">
-
-                    </div>
                 }
             </div>
         </div>
     </div>
 </div>
-
+@if (TempData["errorMessage"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        @TempData["errorMessage"] <br />
+    </div>
+}

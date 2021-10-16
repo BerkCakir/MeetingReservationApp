@@ -62,7 +62,6 @@ namespace MeetingReservationApp.Managers.Concrete
             }
             // not any office available
             return new DataResult<List<Room>>(ResultStatus.Error, Messages.RoomReservation.HoursNotAvailableForOffice(), null);
-
         }
         public async Task<IResult> Add(RoomReservationAddDto roomReservationAddDto)
         {
@@ -114,7 +113,7 @@ namespace MeetingReservationApp.Managers.Concrete
                                                                                                    newReservation.MeetingStartTime <= x.RoomReservation.MeetingStartTime && newReservation.MeetingEndTime >= x.RoomReservation.MeetingEndTime)),
                                                                                                     x => x.RoomReservation);
                     if (inventoryReservations.Count <= 0)
-                    { // if room's inventory is not fixed, but have no other reservations - directly add it to current reservation
+                    { // if room's inventory is not fixed and have no other reservations - directly add it to current reservation
                         await _unitOfWork.InventoryReservations.AddAsync(new InventoryReservation { RoomReservationGuid = newReservation.RoomReservationGuid, InventoryId = inventory.Id });
                     }
                 }
@@ -166,6 +165,12 @@ namespace MeetingReservationApp.Managers.Concrete
         }
         private async Task<IResult> CheckHoursForOffice(DateTime newStartTime, DateTime newEndTime, int roomId)
         {
+            // check office availability for desired hours
+            // example
+            // desired time start: 10:00, end : 12:00
+            // meeting 1 start: 09:00 end 11:00 => (newStartTime >= x.MeetingStartTime && newStartTime <= x.MeetingEndTime) catches it            
+            // meeting 2 start: 11:30 end 12:00 => (newEndTime >= x.MeetingStartTime && newEndTime <= x.MeetingEndTime) catches it
+            // metting 3 start: 10:30 end 11:30 =>   newStartTime <= x.MeetingStartTime && newEndTime >= x.MeetingEndTime catches it
             var exists = await _unitOfWork.RoomReservations.AnyAsync(x => x.RoomId == roomId &&
                                                                       ((newStartTime >= x.MeetingStartTime && newStartTime <= x.MeetingEndTime) ||
                                                                        (newEndTime >= x.MeetingStartTime && newEndTime <= x.MeetingEndTime) ||
