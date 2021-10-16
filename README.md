@@ -40,6 +40,14 @@ DB Diagram:
 - Login creadentials are already set in login page
 - After login - the top right menu can be used for displaying user profile and location
 - RoomReservation and InventroyReservation links can be used after logging in, these links use RoomReservationAPI and InventoryReservationAPI
+- Your Docker app should be like: 
+
+![image](https://user-images.githubusercontent.com/37144967/137601839-3e2e4bb7-277d-4195-a04d-0d1fa1bacfde.png)
+
+## Bussiness Rules
+- I assumed that every inventory is linked to a room at first
+- If a room is reserved, fixed inventory of the room is reserved with the room
+- If the inventory is not fixed and if any reservation doesn't exist for the inventory at the room reservation time, this inventory will also be reseved with the room too
 
 ## Features to be developed
 
@@ -51,14 +59,6 @@ DB Diagram:
 - API documentation should be added 
 - I forgot to add userid to roomreservations table, it should be added because a reservation should be owned by a personnel
 - I didn't add controls, like "start time should be greater then end time" or "you are trying to create reservation for past". This kind of controls should be added
-
-
-## Bussiness Rules
-- I assumed that every inventory is linked to a room at first
-- If a room is reserved, fixed inventory of the room is reserved with the room
-- If the inventory is not fixed and if any reservation doesn't exist for the inventory at the room reservation time, this inventory will also be reseved with the room too
-
-
 
   
 ## User Stories
