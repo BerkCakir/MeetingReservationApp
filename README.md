@@ -12,8 +12,10 @@
 
 
 ## Details and Used Technologies
+- C# is the selected language for the whole solution
 - .Net Core 5.0 is used for API projects, .Net Core 3.1 is used for IdentityServer(because its the latest version can be used free), Asp.Net Core MVC is used for Web UI
-- MS Sql server is used for saving locations, rooms, inventories, room-inventory reservations for keeping-showing relations between entities  
+- MS Sql server is used for saving locations, rooms, inventories, room-inventory reservations for keeping-showing relations between entities 
+- EntitiyFrameworkCore is selected for ORM tool 
 - Generic repository pattern is used for DB operations (Please see under MeetingReservationApp.Shared - IEntityRepository.cs). This reduces code duplications, if any entity is added to the project, use this interface for DB operations.
 - MeetingReservationApp.Shared - IEntityRepository.cs interface is implemented by EfEntityRepositoryBase.cs, in the future if we decide to use a different kind of DB provider, we are able to implement this interface by another specialized concrete class 
 - Also entity abstraction, result, message, enum infrastructure is created under MeetingReservationApp.Shared
