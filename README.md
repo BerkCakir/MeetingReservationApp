@@ -61,7 +61,7 @@ DB Diagram:
 - API documentation should be added 
 - I forgot to add userid to roomreservations table, it should be added because a reservation should be owned by a personnel
 - I didn't add controls, like "start time should be greater then end time" or "you are trying to create reservation for past". This kind of controls should be added
-
+- Logging mechanism should be added (I prefer Serilog), try catch blocks and exception handling should be added 
   
 ## User Stories
 
